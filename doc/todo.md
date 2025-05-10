@@ -1,6 +1,6 @@
-# Threads Clone 專案待辦事項
+# thread Clone 專案待辦事項
 
-這份待辦清單涵蓋 Threads Clone 社交媒體平台的所有開發階段，從基礎設置到管理員功能。每个任務包含具體工作項目，使用 `[ ]` 標記進度。
+這份待辦清單涵蓋 Thread Clone 社交媒體平台的所有開發階段，從基礎設置到管理員功能。每个任務包含具體工作項目，使用 `[ ]` 標記進度。
 
 ## 階段 1：專案設置與資料庫結構
 
@@ -12,11 +12,11 @@
   - 創建 `frontend/` 目錄，運行 `npm create vite@latest`。
   - 配置 Tailwind CSS（`tailwind.config.js`）。
   - 設置 ESLint 和 Prettier 確保程式碼一致性。
-- [ ] 初始化後端 Spring Boot 專案
+- [x] 初始化後端 Spring Boot 專案
   - 創建 `backend/` 目錄，生成 Maven 專案（`pom.xml`）。
   - 添加 Supabase Java 依賴（`io.github.jan:supabase-java`）。
   - 配置 `application.properties`（Supabase URL 和 Key）。
-- [ ] 設置 Git 儲存庫
+- [x] 設置 Git 儲存庫
   - 創建 `.gitignore`，忽略 `node_modules` 和構建產物。
   - 初始化 Git，提交初始專案結構。
 
@@ -66,20 +66,20 @@
 ### 迭代 2.2：貼文 API
 
 - [ ] 實現貼文創建和刪除 API
-  - 創建 `backend/src/main/java/com/threadsclone/backend/controller/PostController.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/controller/PostController.java`：
     - `POST /api/posts`：創建貼文。
     - `DELETE /api/posts/:post_id`：軟刪除貼文（設置 `is_deleted = true`）。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/service/PostService.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/service/PostService.java`：
     - 處理貼文邏輯，與 Supabase Postgrest 交互。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/dto/PostRequest.java` 和 `PostResponse.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/dto/PostRequest.java` 和 `PostResponse.java`。
 - [ ] 實現時間軸 API
   - 在 `PostController.java` 中添加 `GET /api/timeline`：
     - 返回追蹤用戶的貼文（分頁）。
   - 更新 `PostService.java` 支援分頁查詢。
 - [ ] 測試貼文 API
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/PostControllerTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/PostControllerTest.java`：
     - 單元測試：驗證創建、刪除和時間軸 API。
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/PostIntegrationTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/PostIntegrationTest.java`：
     - 整合測試：驗證資料庫操作和 RLS。
 
 ### 迭代 2.3：前端貼文與時間軸
@@ -141,29 +141,29 @@
 ### 迭代 4.1：追蹤 API
 
 - [ ] 實現追蹤 API
-  - 創建 `backend/src/main/java/com/threadsclone/backend/controller/FollowController.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/controller/FollowController.java`：
     - `POST /api/users/:user_id/follow`：追蹤用戶。
     - `DELETE /api/users/:user_id/follow`：取消追蹤。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/service/FollowService.java`。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/entity/Follow.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/service/FollowService.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/entity/Follow.java`。
 - [ ] 測試追蹤 API
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/FollowControllerTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/FollowControllerTest.java`：
     - 單元測試：驗證追蹤和取消追蹤。
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/FollowIntegrationTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/FollowIntegrationTest.java`：
     - 整合測試：驗證 `follows` 表記錄。
 
 ### 迭代 4.2：個人資料 API
 
 - [ ] 實現個人資料 API
-  - 創建 `backend/src/main/java/com/threadsclone/backend/controller/UserController.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/controller/UserController.java`：
     - `GET /api/users/:user_id`：查看用戶資料。
     - `PUT /api/users/me`：更新用戶資料（`username`, `bio`）。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/service/UserService.java`。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/dto/UserRequest.java` 和 `UserResponse.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/service/UserService.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/dto/UserRequest.java` 和 `UserResponse.java`。
 - [ ] 測試個人資料 API
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/UserControllerTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/UserControllerTest.java`：
     - 單元測試：驗證資料檢索和更新。
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/UserIntegrationTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/UserIntegrationTest.java`：
     - 整合測試：驗證 RLS 和資料更新。
 
 ### 迭代 4.3：前端個人資料
@@ -210,14 +210,14 @@
     - 觸發器：`handle_new_like` 和 `handle_new_reply`。
     - RLS 政策：`Users view own notifications`。
 - [ ] 實現通知 API
-  - 創建 `backend/src/main/java/com/threadsclone/backend/controller/NotificationController.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/controller/NotificationController.java`：
     - `GET /api/notifications`：返回用戶通知。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/service/NotificationService.java`。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/entity/Notification.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/service/NotificationService.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/entity/Notification.java`。
 - [ ] 測試通知 API
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/NotificationControllerTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/NotificationControllerTest.java`：
     - 單元測試：驗證通知查詢。
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/NotificationIntegrationTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/NotificationIntegrationTest.java`：
     - 整合測試：驗證通知生成和 RLS。
 
 ### 迭代 5.4：前端通知
@@ -237,14 +237,14 @@
 ### 迭代 6.1：管理員 API
 
 - [ ] 實現管理員 API
-  - 創建 `backend/src/main/java/com/threadsclone/backend/controller/AdminController.java`：
+  - 創建 `backend/src/main/java/com/threadclone/backend/controller/AdminController.java`：
     - `GET /api/admin/posts`：查看所有貼文（可篩選已刪除/匿名）。
     - `DELETE /api/admin/posts/:post_id`：刪除貼文。
-  - 創建 `backend/src/main/java/com/threadsclone/backend/service/AdminService.java`。
+  - 創建 `backend/src/main/java/com/threadclone/backend/service/AdminService.java`。
 - [ ] 測試管理員 API
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/AdminControllerTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/AdminControllerTest.java`：
     - 單元測試：驗證僅管理員可訪問。
-  - 創建 `backend/src/test/java/com/threadsclone/backend/controller/AdminIntegrationTest.java`：
+  - 創建 `backend/src/test/java/com/threadclone/backend/controller/AdminIntegrationTest.java`：
     - 整合測試：驗證貼文檢索和刪除。
 
 ### 迭代 6.2：前端管理員面板
@@ -288,7 +288,7 @@
 
 ### 如何使用
 
-1. **複製文件**：將上述內容保存為 `todo.markdown`，放置於專案根目錄（`threads-clone/`）。
+1. **複製文件**：將上述內容保存為 `todo.markdown`，放置於專案根目錄（`thread-clone/`）。
 2. **追蹤進度**：在開發過程中，完成任務後將 `[ ]` 改為 `[x]`，例如：
    ```markdown
    - [x] 初始化前端 React 專案（使用 Vite）

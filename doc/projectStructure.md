@@ -1,9 +1,9 @@
 ```
-threads-clone/
+thread-clone/
 ├── backend/                                    # Spring Boot 後端專案
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/threadsclone/backend/
+│   │   │   ├── java/com/threadclone/backend/
 │   │   │   │   ├── controller/              # 控制器
 │   │   │   │   │   ├── AdminController.java
 │   │   │   │   │   ├── FollowController.java
@@ -29,7 +29,7 @@ threads-clone/
 │   │   │   ├── resources/
 │   │   │   │   └── application.properties  # Supabase 配置
 │   │   ├── test/
-│   │   │   ├── java/com/threadsclone/backend/controller/
+│   │   │   ├── java/com/threadclone/backend/controller/
 │   │   │   │   ├── AdminControllerTest.java
 │   │   │   │   ├── AdminIntegrationTest.java
 │   │   │   │   ├── FollowControllerTest.java
@@ -72,7 +72,6 @@ threads-clone/
 ├── README.md                              # 專案說明
 └── .gitignore                             # Git 忽略文件
 ```
-
 
 ```mermaid
 graph TD

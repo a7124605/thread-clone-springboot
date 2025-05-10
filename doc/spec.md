@@ -1,15 +1,18 @@
-# Threads Clone 規格文件
+# Thread Clone 規格文件
 
 ## 1. 專案概述
-本專案旨在開發一個類似 Threads 的社交媒體平台，使用者可發佈貼文、回覆、點讚、追蹤其他使用者，並支援搜尋功能。平台採用簡潔的卡片式介面，支援深色/淺色模式，後端使用 Spring Boot，前端使用 React，資料庫使用 Supabase（PostgreSQL）。開發採用測試驅動開發（TDD），確保高品質程式碼。
+
+本專案旨在開發一個類似 thread 的社交媒體平台，使用者可發佈貼文、回覆、點讚、追蹤其他使用者，並支援搜尋功能。平台採用簡潔的卡片式介面，支援深色/淺色模式，後端使用 Spring Boot，前端使用 React，資料庫使用 Supabase（PostgreSQL）。開發採用測試驅動開發（TDD），確保高品質程式碼。
 
 ### 目標
+
 - 提供動態時間軸（無限滾動），顯示使用者及其追蹤者的貼文。
 - 支援匿名發文（需登入，隱藏真實身份）。
 - 實現全文搜尋（貼文和回覆，按相關性排序）。
 - 確保安全性和簡潔的使用者體驗。
 
 ### 非功能需求
+
 - **後端**：Spring Boot，RESTful API，OpenAPI（Swagger）文件。
 - **前端**：React，Tailwind CSS，支援深色/淺色模式和行動裝置適配。
 - **資料庫**：Supabase 免費版（500 MB，PostgreSQL），使用 RLS（Row-Level Security）。
@@ -21,6 +24,7 @@
 ## 2. 功能需求
 
 ### 2.1 使用者認證
+
 - **認證方式**：
   - 使用 Supabase Auth 處理註冊、登入和 JWT 生成。
   - JWT 由 Supabase 生成，包含 `sub`（`auth.uid()`）和 `role`（如 `authenticated`），有效期 24 小時。
@@ -42,6 +46,7 @@
   - 無自動登出（無閒置超時）。
 
 ### 2.2 貼文管理
+
 - **創建貼文**：
   - 內容：Markdown 格式，≤ 500 字。
   - 圖片：外部 URL（`.jpg`、`.png`、`.gif`，≤ 255 字元）。
@@ -58,6 +63,7 @@
   - 每次加載 20 條，支援游標分頁（`next_cursor`）。
 
 ### 2.3 回覆管理
+
 - **創建回覆**：
   - 內容：Markdown 格式，≤ 200 字，單層（無巢狀）。
   - 圖片：外部 URL（同貼文）。
@@ -71,6 +77,7 @@
   - 前端下拉選單切換。
 
 ### 2.4 追蹤系統
+
 - **追蹤/取消追蹤**：
   - 點擊按鈕（「追蹤」/「取消追蹤」）。
   - 限制：無法追蹤自己（透過 RLS 檢查）。
@@ -80,12 +87,14 @@
   - 互動：追蹤/取消追蹤按鈕。
 
 ### 2.5 搜尋功能
+
 - **範圍**：貼文和回覆（`is_deleted = FALSE`）。
 - **排序**：相關性（`ts_rank`），次按 `created_at` 倒序。
 - **前端**：搜尋欄提交查詢，顯示結果列表（類型、摘要、連結）。
 - **未來**：即時搜尋（輸入時動態顯示）。
 
 ### 2.6 管理員功能
+
 - **刪除**：可刪除任何貼文或回覆（軟刪除）。
 - **匿名資訊**：查看匿名貼文的真實 `user_id` 和 `username`。
 - API：`GET /api/admin/posts?anonymous=true`。
@@ -95,6 +104,7 @@
 ## 3. 架構選擇
 
 ### 3.1 技術棧
+
 - **後端**：
   - Spring Boot（`spring-boot-starter-web`、`spring-boot-starter-data-jpa`、`spring-boot-starter-security`）。
   - Supabase（PostgreSQL，免費版 500 MB）。
@@ -108,6 +118,7 @@
 - **測試**：JUnit 5、Mockito、Spring Boot Test。
 
 ### 3.2 系統架構
+
 ```mermaid
 graph TD
     A[前端: React] -->|REST API| B[後端: Spring Boot]
@@ -127,6 +138,7 @@ graph TD
 ## 4. 資料處理細節
 
 ### 4.1 資料庫結構
+
 ```sql
 CREATE TABLE users (
   id UUID PRIMARY KEY, -- 與 auth.users.id 同步
@@ -184,6 +196,7 @@ CREATE TABLE follows (
   - 移除 `verification_tokens` 表，改用 Supabase Auth 的內建驗證。
 
 ### 4.2 索引
+
 ```sql
 CREATE INDEX idx_posts_content_tsv ON posts USING GIN(content_tsv) WHERE content_tsv IS NOT NULL;
 CREATE INDEX idx_replies_content_tsv ON replies USING GIN(content_tsv) WHERE content_tsv IS NOT NULL;
@@ -197,6 +210,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 ```
 
 ### 4.3 RLS（Supabase）
+
 - **角色說明**：
   - `anon`：未登入使用者，公開訪問（例如時間軸）。
   - `authenticated`：登入使用者，透過 Supabase JWT 設置 `auth.uid()`。
@@ -241,6 +255,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
   ```
 
 ### 4.4 API 端點（RESTful）
+
 - **認證**：
   - `POST /api/register`：
     - 輸入：`{ email, username, password }`
@@ -275,6 +290,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 ---
 
 ## 5. 錯誤處理策略
+
 - **原則**：
   - 前端顯示簡潔、用戶友好的錯誤訊息，隱藏技術細節。
   - 後端返回標準化錯誤格式：
@@ -293,10 +309,10 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 - **前端實現**：
   ```jsx
   function PostForm() {
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
     const handleSubmit = async () => {
       try {
-        const { error } = await supabase.from('posts').insert({ content });
+        const { error } = await supabase.from("posts").insert({ content });
         if (error) throw error;
       } catch (err) {
         setError(err.message);
@@ -329,6 +345,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 ---
 
 ## 6. 測試計劃
+
 - **策略**：TDD，確保程式碼品質。
 - **工具**：
   - JUnit 5（單元測試）。
@@ -336,10 +353,13 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
   - Spring Boot Test（整合測試）。
   - Supabase CLI（資料庫測試）。
 - **測試類型**：
+
   - **單元測試**（80% 覆蓋）：
+
     - 控制器（API 端點邏輯）。
     - 服務層（業務邏輯，如貼文創建、點讚計數）。
     - 示例：
+
       ```java
       @SpringBootTest
       class PostServiceTest {
@@ -361,10 +381,13 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
         }
       }
       ```
+
   - **整合測試**（50% 覆蓋）：
+
     - API 端點（`/api/register`、`/api/posts`、`/api/search`）。
     - Supabase Auth 和資料庫互動（測試 RLS）。
     - 示例：
+
       ```java
       @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
       class AuthControllerIntegrationTest {
@@ -388,6 +411,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
         }
       }
       ```
+
   - **資料庫測試**：
     - 使用 Supabase CLI 驗證 RLS：
       ```sql
@@ -398,6 +422,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
       PERFORM set_config('jwt.claims', '{"sub": "<user_id>", "role": "authenticated"}', true);
       INSERT INTO posts (content, user_id) VALUES ('Test', auth.uid()); -- 預期：成功
       ```
+
 - **優先測試功能**：
   - 認證（註冊、登入、驗證）。
   - 貼文（創建、刪除、匿名）。
@@ -417,6 +442,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 ---
 
 ## 7. 開發順序
+
 - **階段 1：資料庫設計**（1-2 週）：
   - 創建表、索引、RLS。
   - 配置 Supabase Auth（啟用郵件驗證）。
@@ -430,7 +456,7 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
   - 登入/註冊表單（使用 `@supabase/supabase-js`）。
   - 時間軸、貼文/回覆表單。
   - 深色模式、行動適配。
-- **階段 4：進Xiv功能**（2-3 週）：
+- **階段 4：進 Xiv 功能**（2-3 週）：
   - 搜尋、追蹤、個人檔案、管理員功能。
 - **階段 5：整合與優化**（1-2 週）：
   - 整合前端後端。
@@ -440,14 +466,16 @@ CREATE INDEX idx_follows_followed_id ON follows(followed_id);
 ---
 
 ## 8. 交付方式
+
 - **GitHub 儲存庫**：
   - 結構：
+
 ```
-threads-clone/
+thread-clone/
 ├── backend/                                    # Spring Boot 後端專案
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/threadsclone/backend/
+│   │   │   ├── java/com/threadclone/backend/
 │   │   │   │   ├── controller/              # 控制器
 │   │   │   │   │   ├── AdminController.java
 │   │   │   │   │   ├── FollowController.java
@@ -473,7 +501,7 @@ threads-clone/
 │   │   │   ├── resources/
 │   │   │   │   └── application.properties  # Supabase 配置
 │   │   ├── test/
-│   │   │   ├── java/com/threadsclone/backend/controller/
+│   │   │   ├── java/com/threadclone/backend/controller/
 │   │   │   │   ├── AdminControllerTest.java
 │   │   │   │   ├── AdminIntegrationTest.java
 │   │   │   │   ├── FollowControllerTest.java
@@ -517,7 +545,7 @@ threads-clone/
 └── .gitignore                             # Git 忽略文件
 ```
 
-  - 包含 CI/CD（GitHub Actions）。
+- 包含 CI/CD（GitHub Actions）。
 - **規格文件**（`docs/specification.md`）：
   - 功能、資料庫、API、測試、未來功能。
   - 附錄：Mermaid 結構圖、環境變數。
@@ -534,6 +562,7 @@ threads-clone/
 ---
 
 ## 9. 未來功能
+
 - 即時搜尋。
 - 圖片上傳（Supabase Storage，100 KB）。
 - Cloudflare Turnstile（隱形驗證）。
@@ -545,6 +574,7 @@ threads-clone/
 ---
 
 ## 10. 開發者支援
+
 - **無經驗工程師指南**：
   - 詳細 `README.md`（安裝、執行、測試）。
   - 程式碼範例（Spring Boot 控制器、React 組件）。
@@ -564,6 +594,7 @@ threads-clone/
 ## 附錄
 
 ### 資料庫結構圖
+
 ```mermaid
 erDiagram
   users ||--o{ posts : creates
@@ -575,12 +606,14 @@ erDiagram
 ```
 
 ### 環境變數範例
+
 ```env
 SUPABASE_URL=https://<project>.supabase.co
 SUPABASE_KEY=<key>
 ```
 
 ### 安裝與執行
+
 1. **後端**：
    ```bash
    cd backend
@@ -594,6 +627,7 @@ SUPABASE_KEY=<key>
    npm run dev
    ```
 3. **Supabase**：
-  - 初始化專案，匯入 `database-schema.sql`。
-  - 配置 RLS 和環境變數。
-  - 啟用 Supabase Auth 的郵件驗證（儀表板設置）。
+
+- 初始化專案，匯入 `database-schema.sql`。
+- 配置 RLS 和環境變數。
+- 啟用 Supabase Auth 的郵件驗證（儀表板設置）。

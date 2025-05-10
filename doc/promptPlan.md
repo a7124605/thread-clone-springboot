@@ -5,15 +5,18 @@
 ## 專案藍圖：Threads Clone 開發計劃
 
 ### 目標
+
 打造一個類似 Threads 的社交媒體平台，支援貼文、回覆、點讚、追蹤和搜尋功能，使用 Supabase（PostgreSQL）作為資料庫，後端使用 Spring Boot，前端使用 React，並採用 TDD 確保高品質代碼。
 
 ### 非功能需求
+
 - **安全性**：使用 Supabase Auth 的 JWT 認證，啟用 RLS（Row-Level Security），確保資料安全。
 - **可擴展性**：支援無限滾動、游標分頁和全文搜尋。
 - **可維護性**：結構化代碼、OpenAPI 文件、詳細測試覆蓋（單元測試 80%，整合測試 50%）。
 - **用戶體驗**：響應式設計，支援深色/淺色模式，簡潔的錯誤訊息。
 
 ### 技術棧
+
 - **後端**：Spring Boot（RESTful API）、Supabase Java 客戶端、OpenAPI（Swagger）。
 - **前端**：React（Vite）、Tailwind CSS、@supabase/supabase-js。
 - **資料庫**：Supabase（PostgreSQL），啟用 RLS 和全文搜尋（tsvector）。
@@ -24,39 +27,46 @@
 ## 步驟一：整體開發計劃
 
 ### 階段分解
+
 根據規格和開發順序，專案分為五個主要階段，每個階段聚焦於特定功能，並通過迭代逐步完成：
 
 1. **階段 1：資料庫設計與認證基礎**（1-2 週）
-    - 目標：建立資料庫結構，配置 Supabase Auth，實現註冊和登入功能。
-    - 功能：資料庫表、索引、RLS、用戶註冊/登入 API、前端認證表單。
-    - 交付：可運行的資料庫、基本的認證 API 和前端登入頁面。
+
+   - 目標：建立資料庫結構，配置 Supabase Auth，實現註冊和登入功能。
+   - 功能：資料庫表、索引、RLS、用戶註冊/登入 API、前端認證表單。
+   - 交付：可運行的資料庫、基本的認證 API 和前端登入頁面。
 
 2. **階段 2：貼文與時間軸**（2-3 週）
-    - 目標：實現貼文創建、刪除和時間軸顯示。
-    - 功能：貼文 API（創建、刪除）、時間軸 API（公開）、前端貼文表單和時間軸組件。
-    - 交付：用戶可創建貼文並查看時間軸。
+
+   - 目標：實現貼文創建、刪除和時間軸顯示。
+   - 功能：貼文 API（創建、刪除）、時間軸 API（公開）、前端貼文表單和時間軸組件。
+   - 交付：用戶可創建貼文並查看時間軸。
 
 3. **階段 3：回覆與點讚**（2-3 週）
-    - 目標：添加回覆和點讚功能。
-    - 功能：回覆 API（創建、刪除）、點讚 API（點讚、取消）、前端回覆表單和點讚按鈕。
-    - 交付：用戶可回覆貼文並點讚。
+
+   - 目標：添加回覆和點讚功能。
+   - 功能：回覆 API（創建、刪除）、點讚 API（點讚、取消）、前端回覆表單和點讚按鈕。
+   - 交付：用戶可回覆貼文並點讚。
 
 4. **階段 4：追蹤與個人檔案**（2-3 週）
-    - 目標：實現追蹤系統和個人檔案頁面。
-    - 功能：追蹤 API（追蹤、取消）、個人檔案 API、前端個人檔案頁面和追蹤按鈕。
-    - 交付：用戶可追蹤他人並查看個人檔案。
+
+   - 目標：實現追蹤系統和個人檔案頁面。
+   - 功能：追蹤 API（追蹤、取消）、個人檔案 API、前端個人檔案頁面和追蹤按鈕。
+   - 交付：用戶可追蹤他人並查看個人檔案。
 
 5. **階段 5：搜尋與管理員功能**（2-3 週）
-    - 目標：添加全文搜尋和管理員功能。
-    - 功能：搜尋 API、管理員 API（查看匿名貼文）、前端搜尋欄和管理員介面。
-    - 交付：完整的 Threads Clone 應用程式，包含搜尋和管理功能。
+
+   - 目標：添加全文搜尋和管理員功能。
+   - 功能：搜尋 API、管理員 API（查看匿名貼文）、前端搜尋欄和管理員介面。
+   - 交付：完整的 Threads Clone 應用程式，包含搜尋和管理功能。
 
 6. **階段 6：整合與優化**（1-2 週）
-    - 目標：整合所有功能，優化性能，完成最終測試。
-    - 功能：前端後端整合、性能優化（快取、索引）、最終測試。
-    - 交付：可部署的應用程式，包含 CI/CD 設置和文件。
+   - 目標：整合所有功能，優化性能，完成最終測試。
+   - 功能：前端後端整合、性能優化（快取、索引）、最終測試。
+   - 交付：可部署的應用程式，包含 CI/CD 設置和文件。
 
 ### 設計原則
+
 - **增量開發**：每個階段交付可運行的功能，逐步增加複雜度。
 - **TDD**：每個功能先寫測試，確保代碼品質。
 - **模組化**：後端分層（控制器、服務、儲存庫），前端組件化（React 組件）。
@@ -70,208 +80,220 @@
 將每個階段分解為更小的迭代（chunks），每個迭代專注於一個具體功能，包含明確的輸入、輸出和測試需求。以下是初步分解：
 
 ### 階段 1：資料庫設計與認證基礎
+
 - **迭代 1.1：資料庫結構與 RLS**
-    - 創建表（`users`, `posts`, `replies`, `likes`, `follows`）、索引和觸發器。
-    - 配置 RLS 政策，確保公開存取和認證存取。
-    - 測試：Supabase CLI 驗證 RLS。
+  - 創建表（`users`, `posts`, `replies`, `likes`, `follows`）、索引和觸發器。
+  - 配置 RLS 政策，確保公開存取和認證存取。
+  - 測試：Supabase CLI 驗證 RLS。
 - **迭代 1.2：Supabase Auth 與觸發器**
-    - 配置 Supabase Auth（啟用郵件驗證）。
-    - 創建觸發器，同步 `auth.users` 到 `users` 表。
-    - 測試：驗證用戶註冊和 `users` 表同步。
+  - 配置 Supabase Auth（啟用郵件驗證）。
+  - 創建觸發器，同步 `auth.users` 到 `users` 表。
+  - 測試：驗證用戶註冊和 `users` 表同步。
 - **迭代 1.3：後端認證 API**
-    - 實現 `POST /api/register` 和 `POST /api/login`。
-    - 配置 Supabase Java 客戶端，處理 JWT。
-    - 測試：單元測試（控制器、服務）、整合測試（API 與 Supabase）。
+  - 實現 `POST /api/register` 和 `POST /api/login`。
+  - 配置 Supabase Java 客戶端，處理 JWT。
+  - 測試：單元測試（控制器、服務）、整合測試（API 與 Supabase）。
 - **迭代 1.4：前端認證表單**
-    - 創建 React 專案，設置 `@supabase/supabase-js`。
-    - 實現註冊和登入表單，處理錯誤訊息。
-    - 測試：手動測試表單，驗證 JWT 儲存。
+  - 創建 React 專案，設置 `@supabase/supabase-js`。
+  - 實現註冊和登入表單，處理錯誤訊息。
+  - 測試：手動測試表單，驗證 JWT 儲存。
 
 ### 階段 2：貼文與時間軸
+
 - **迭代 2.1：貼文 API**
-    - 實現 `POST /api/posts`（創建貼文）、`DELETE /api/posts/:post_id`。
-    - 配置 RLS，確保只有驗證用戶可創建。
-    - 測試：單元測試（貼文邏輯）、整合測試（RLS）。
+  - 實現 `POST /api/posts`（創建貼文）、`DELETE /api/posts/:post_id`。
+  - 配置 RLS，確保只有驗證用戶可創建。
+  - 測試：單元測試（貼文邏輯）、整合測試（RLS）。
 - **迭代 2.2：時間軸 API**
-    - 實現 `GET /api/timeline`（公開，無限滾動）。
-    - 配置游標分頁（20 條/頁）。
-    - 測試：單元測試（分頁邏輯）、整合測試（公開存取）。
+  - 實現 `GET /api/timeline`（公開，無限滾動）。
+  - 配置游標分頁（20 條/頁）。
+  - 測試：單元測試（分頁邏輯）、整合測試（公開存取）。
 - **迭代 2.3：前端貼文與時間軸**
-    - 實現貼文表單和時間軸組件（無限滾動）。
-    - 使用 Tailwind CSS 設計卡片式介面。
-    - 測試：手動測試表單和滾動行為。
+  - 實現貼文表單和時間軸組件（無限滾動）。
+  - 使用 Tailwind CSS 設計卡片式介面。
+  - 測試：手動測試表單和滾動行為。
 
 ### 階段 3：回覆與點讚
+
 - **迭代 3.1：回覆 API**
-    - 實現 `POST /api/posts/:post_id/replies`、`DELETE /api/replies/:reply_id`。
-    - 配置 RLS，確保驗證用戶可創建回覆。
-    - 測試：單元測試（回覆邏輯）、整合測試（RLS）。
+  - 實現 `POST /api/posts/:post_id/replies`、`DELETE /api/replies/:reply_id`。
+  - 配置 RLS，確保驗證用戶可創建回覆。
+  - 測試：單元測試（回覆邏輯）、整合測試（RLS）。
 - **迭代 3.2：點讚 API**
-    - 實現 `POST /api/posts/:post_id/like`、`DELETE /api/posts/:post_id/like`。
-    - 更新 `posts.likes_count`。
-    - 測試：單元測試（點讚邏輯）、整合測試（計數）。
+  - 實現 `POST /api/posts/:post_id/like`、`DELETE /api/posts/:post_id/like`。
+  - 更新 `posts.likes_count`。
+  - 測試：單元測試（點讚邏輯）、整合測試（計數）。
 - **迭代 3.3：前端回覆與點讚**
-    - 實現回覆表單和點讚按鈕。
-    - 顯示回覆列表和點讚數。
-    - 測試：手動測試回覆和點讚功能。
+  - 實現回覆表單和點讚按鈕。
+  - 顯示回覆列表和點讚數。
+  - 測試：手動測試回覆和點讚功能。
 
 ### 階段 4：追蹤與個人檔案
+
 - **迭代 4.1：追蹤 API**
-    - 實現 `POST /api/follow/:user_id`、`DELETE /api/follow/:user_id`。
-    - 配置 RLS，防止自我追蹤。
-    - 測試：單元測試（追蹤邏輯）、整合測試（RLS）。
+  - 實現 `POST /api/follow/:user_id`、`DELETE /api/follow/:user_id`。
+  - 配置 RLS，防止自我追蹤。
+  - 測試：單元測試（追蹤邏輯）、整合測試（RLS）。
 - **迭代 4.2：個人檔案 API**
-    - 實現 `GET /api/users/:user_id`、`GET /api/users/:user_id/posts`。
-    - 計算追蹤者數和追蹤中數。
-    - 測試：單元測試（檔案邏輯）、整合測試（公開存取）。
+  - 實現 `GET /api/users/:user_id`、`GET /api/users/:user_id/posts`。
+  - 計算追蹤者數和追蹤中數。
+  - 測試：單元測試（檔案邏輯）、整合測試（公開存取）。
 - **迭代 4.3：前端個人檔案**
-    - 實現個人檔案頁面和追蹤按鈕。
-    - 顯示用戶貼文（無限滾動）。
-    - 測試：手動測試檔案和追蹤功能。
+  - 實現個人檔案頁面和追蹤按鈕。
+  - 顯示用戶貼文（無限滾動）。
+  - 測試：手動測試檔案和追蹤功能。
 
 ### 階段 5：搜尋與管理員功能
+
 - **迭代 5.1：搜尋 API**
-    - 實現 `GET /api/search?q=關鍵字`，使用 `tsvector` 排序。
-    - 配置公開存取（`is_deleted = FALSE`）。
-    - 測試：單元測試（搜尋邏輯）、整合測試（相關性）。
+  - 實現 `GET /api/search?q=關鍵字`，使用 `tsvector` 排序。
+  - 配置公開存取（`is_deleted = FALSE`）。
+  - 測試：單元測試（搜尋邏輯）、整合測試（相關性）。
 - **迭代 5.2：管理員 API**
-    - 實現 `GET /api/admin/posts?anonymous=true`。
-    - 配置管理員 RLS。
-    - 測試：單元測試（管理員邏輯）、整合測試（權限）。
+  - 實現 `GET /api/admin/posts?anonymous=true`。
+  - 配置管理員 RLS。
+  - 測試：單元測試（管理員邏輯）、整合測試（權限）。
 - **迭代 5.3：前端搜尋與管理員**
-    - 實現搜尋欄和管理員介面。
-    - 顯示搜尋結果和匿名貼文。
-    - 測試：手動測試搜尋和管理功能。
+  - 實現搜尋欄和管理員介面。
+  - 顯示搜尋結果和匿名貼文。
+  - 測試：手動測試搜尋和管理功能。
 
 ### 階段 6：整合與優化
+
 - **迭代 6.1：前端後端整合**
-    - 整合所有 API 端點和前端組件。
-    - 確保 JWT 驗證和錯誤處理。
-    - 測試：端到端測試（手動）。
+  - 整合所有 API 端點和前端組件。
+  - 確保 JWT 驗證和錯誤處理。
+  - 測試：端到端測試（手動）。
 - **迭代 6.2：性能優化**
-    - 添加快取（Redis 或 Supabase Edge Functions）。
-    - 優化索引（搜尋、分頁）。
-    - 測試：性能測試（響應時間）。
+  - 添加快取（Redis 或 Supabase Edge Functions）。
+  - 優化索引（搜尋、分頁）。
+  - 測試：性能測試（響應時間）。
 - **迭代 6.3：最終測試與文件**
-    - 執行全套測試（單元、整合、端到端）。
-    - 生成 OpenAPI 文件和 README。
-    - 測試：驗證覆蓋率（80% 單元，50% 整合）。
+  - 執行全套測試（單元、整合、端到端）。
+  - 生成 OpenAPI 文件和 README。
+  - 測試：驗證覆蓋率（80% 單元，50% 整合）。
 
 ---
 
 ## 步驟三：細化步驟
 
 每個迭代進一步分解為更小的步驟，確保每個步驟：
+
 - **可實施**：單次開發不超過 1-2 小時。
 - **可測試**：包含明確的測試案例。
 - **有意義**：推進專案進展，與前一步驟整合。
 - **安全**：避免大規模變更，減少錯誤風險。
-
-
-
-
 
 以下是階段 1 和 2 的細化步驟（其他階段可依相同邏輯分解）：
 
 ### 階段 1：資料庫設計與認證基礎
 
 #### 迭代 1.1：資料庫結構與 RLS
+
 - **步驟 1.1.1：創建資料庫表**
-    - 創建 `users`, `posts`, `replies`, `likes`, `follows` 表。
-    - 配置主鍵、外鍵和約束。
-    - 測試：驗證表結構（Supabase CLI）。
+  - 創建 `users`, `posts`, `replies`, `likes`, `follows` 表。
+  - 配置主鍵、外鍵和約束。
+  - 測試：驗證表結構（Supabase CLI）。
 - **步驟 1.1.2：添加索引**
-    - 創建全文搜尋索引（`content_tsv`）和其他索引。
-    - 測試：查詢性能（EXPLAIN）。
+  - 創建全文搜尋索引（`content_tsv`）和其他索引。
+  - 測試：查詢性能（EXPLAIN）。
 - **步驟 1.1.3：實現觸發器**
-    - 創建 `detect_english` 和 `update_content_tsv` 函數。
-    - 添加觸發器到 `posts` 和 `replies`。
-    - 測試：插入英文/非英文內容，驗證 `content_tsv`。
+  - 創建 `detect_english` 和 `update_content_tsv` 函數。
+  - 添加觸發器到 `posts` 和 `replies`。
+  - 測試：插入英文/非英文內容，驗證 `content_tsv`。
 - **步驟 1.1.4：配置 RLS**
-    - 啟用 RLS，添加政策（`users`, `posts`, `replies`, `likes`, `follows`）。
-    - 測試：模擬 `anon` 和 `authenticated` 角色，驗證存取。
+  - 啟用 RLS，添加政策（`users`, `posts`, `replies`, `likes`, `follows`）。
+  - 測試：模擬 `anon` 和 `authenticated` 角色，驗證存取。
 
 #### 迭代 1.2：Supabase Auth 與觸發器
+
 - **步驟 1.2.1：配置 Supabase Auth**
-    - 在 Supabase 儀表板啟用郵件驗證。
-    - 設置環境變數（`SUPABASE_URL`, `SUPABASE_KEY`）。
-    - 測試：手動註冊用戶，驗證郵件發送。
+  - 在 Supabase 儀表板啟用郵件驗證。
+  - 設置環境變數（`SUPABASE_URL`, `SUPABASE_KEY`）。
+  - 測試：手動註冊用戶，驗證郵件發送。
 - **步驟 1.2.2：創建同步觸發器**
-    - 實現 `handle_new_user` 函數，同步 `auth.users` 到 `users`。
-    - 添加觸發器到 `auth.users`。
-    - 測試：註冊用戶，驗證 `users` 表記錄。
+  - 實現 `handle_new_user` 函數，同步 `auth.users` 到 `users`。
+  - 添加觸發器到 `auth.users`。
+  - 測試：註冊用戶，驗證 `users` 表記錄。
 
 #### 迭代 1.3：後端認證 API
+
 - **步驟 1.3.1：設置 Spring Boot 專案**
-    - 創建 Spring Boot 專案，添加依賴（`spring-web`, `spring-data-jpa`, `supabase-java`）。
-    - 配置應用程式屬性（`application.yml`）。
-    - 測試：啟動應用程式，驗證無錯誤。
+  - 創建 Spring Boot 專案，添加依賴（`spring-web`, `spring-data-jpa`, `supabase-java`）。
+  - 配置應用程式屬性（`application.yml`）。
+  - 測試：啟動應用程式，驗證無錯誤。
 - **步驟 1.3.2：實現註冊 API**
-    - 創建 `POST /api/register` 控制器和服務。
-    - 使用 Supabase Java 客戶端註冊用戶。
-    - 測試：單元測試（控制器、服務）、整合測試（Supabase）。
+  - 創建 `POST /api/register` 控制器和服務。
+  - 使用 Supabase Java 客戶端註冊用戶。
+  - 測試：單元測試（控制器、服務）、整合測試（Supabase）。
 - **步驟 1.3.3：實現登入 API**
-    - 創建 `POST /api/login` 控制器和服務。
-    - 處理 Supabase JWT 返回。
-    - 測試：單元測試（控制器、服務）、整合測試（JWT）。
+  - 創建 `POST /api/login` 控制器和服務。
+  - 處理 Supabase JWT 返回。
+  - 測試：單元測試（控制器、服務）、整合測試（JWT）。
 
 #### 迭代 1.4：前端認證表單
+
 - **步驟 1.4.1：設置 React 專案**
-    - 創建 Vite 專案，添加 Tailwind CSS 和 `@supabase/supabase-js`。
-    - 配置環境變數（`.env`）。
-    - 測試：啟動應用程式，驗證頁面渲染。
+  - 創建 Vite 專案，添加 Tailwind CSS 和 `@supabase/supabase-js`。
+  - 配置環境變數（`.env`）。
+  - 測試：啟動應用程式，驗證頁面渲染。
 - **步驟 1.4.2：實現註冊表單**
-    - 創建註冊組件，調用 `supabase.auth.signUp`。
-    - 顯示錯誤訊息。
-    - 測試：手動測試表單，驗證註冊流程。
+  - 創建註冊組件，調用 `supabase.auth.signUp`。
+  - 顯示錯誤訊息。
+  - 測試：手動測試表單，驗證註冊流程。
 - **步驟 1.4.3：實現登入表單**
-    - 創建登入組件，調用 `supabase.auth.signInWithPassword`。
-    - 儲存 JWT 到 `localStorage`。
-    - 測試：手動測試登入，驗證 JWT。
+  - 創建登入組件，調用 `supabase.auth.signInWithPassword`。
+  - 儲存 JWT 到 `localStorage`。
+  - 測試：手動測試登入，驗證 JWT。
 
 ### 階段 2：貼文與時間軸
 
 #### 迭代 2.1：貼文 API
+
 - **步驟 2.1.1：實現貼文創建 API**
-    - 創建 `POST /api/posts` 控制器和服務。
-    - 驗證內容長度（≤ 500 字）和圖片 URL。
-    - 測試：單元測試（驗證邏輯）、整合測試（RLS）。
+  - 創建 `POST /api/posts` 控制器和服務。
+  - 驗證內容長度（≤ 500 字）和圖片 URL。
+  - 測試：單元測試（驗證邏輯）、整合測試（RLS）。
 - **步驟 2.1.2：實現貼文刪除 API**
-    - 創建 `DELETE /api/posts/:post_id` 控制器和服務。
-    - 實現軟刪除（`is_deleted = TRUE`）。
-    - 測試：單元測試（刪除邏輯）、整合測試（權限）。
+  - 創建 `DELETE /api/posts/:post_id` 控制器和服務。
+  - 實現軟刪除（`is_deleted = TRUE`）。
+  - 測試：單元測試（刪除邏輯）、整合測試（權限）。
 
 #### 迭代 2.2：時間軸 API
+
 - **步驟 2.2.1：實現時間軸查詢**
-    - 創建 `GET /api/timeline` 控制器和服務。
-    - 查詢用戶及其追蹤者的貼文（`is_deleted = FALSE`）。
-    - 測試：單元測試（查詢邏輯）、整合測試（公開存取）。
+  - 創建 `GET /api/timeline` 控制器和服務。
+  - 查詢用戶及其追蹤者的貼文（`is_deleted = FALSE`）。
+  - 測試：單元測試（查詢邏輯）、整合測試（公開存取）。
 - **步驟 2.2.2：實現游標分頁**
-    - 添加 `cursor` 參數，限制每次 20 條。
-    - 返回 `next_cursor`。
-    - 測試：單元測試（分頁邏輯）、整合測試（連續滾動）。
+  - 添加 `cursor` 參數，限制每次 20 條。
+  - 返回 `next_cursor`。
+  - 測試：單元測試（分頁邏輯）、整合測試（連續滾動）。
 
 #### 迭代 2.3：前端貼文與時間軸
+
 - **步驟 2.3.1：實現貼文表單**
-    - 創建貼文組件，調用 `POST /api/posts`。
-    - 支援匿名選項和圖片 URL。
-    - 測試：手動測試表單，驗證創建。
+  - 創建貼文組件，調用 `POST /api/posts`。
+  - 支援匿名選項和圖片 URL。
+  - 測試：手動測試表單，驗證創建。
 - **步驟 2.3.2：實現時間軸組件**
-    - 創建時間軸組件，調用 `GET /api/timeline`。
-    - 實現無限滾動（Intersection Observer）。
-    - 測試：手動測試滾動和資料加載。
+  - 創建時間軸組件，調用 `GET /api/timeline`。
+  - 實現無限滾動（Intersection Observer）。
+  - 測試：手動測試滾動和資料加載。
 
 ---
 
 ## 步驟四：審查與調整
 
 ### 審查標準
+
 - **步驟粒度**：每個步驟應在 1-2 小時內完成，避免過於複雜。
 - **測試性**：每個步驟包含明確的測試案例（單元、整合或手動）。
 - **連續性**：每個步驟與前一步驟整合，無孤立代碼。
 - **進展性**：每個步驟推進功能實現，逐步接近完整應用。
 
 ### 審查結果
+
 - **階段 1.1（資料庫）**：步驟粒度適中，表、索引、觸發器和 RLS 分開實現，易於測試（Supabase CLI）。
 - **階段 1.2（Auth）**：觸發器步驟可能稍複雜，可細分為「創建函數」和「綁定觸發器」。
 - **階段 1.3（後端 API）**：註冊和登入 API 分開，粒度合理，測試覆蓋充分。
@@ -279,36 +301,40 @@
 - **階段 2（貼文與時間軸）**：步驟清晰，API 和前端分離，無限滾動可能需細分為「基礎列表」和「滾動邏輯」。
 
 ### 調整後的細化步驟（階段 1 示例）
+
 #### 迭代 1.2：Supabase Auth 與觸發器
+
 - **步驟 1.2.1：配置 Supabase Auth**
-    - 配置郵件驗證，設置環境變數。
-    - 測試：手動註冊，驗證郵件。
+  - 配置郵件驗證，設置環境變數。
+  - 測試：手動註冊，驗證郵件。
 - **步驟 1.2.2：創建同步函數**
-    - 實現 `handle_new_user` 函數。
-    - 測試：模擬插入 `auth.users`，驗證函數邏輯。
+  - 實現 `handle_new_user` 函數。
+  - 測試：模擬插入 `auth.users`，驗證函數邏輯。
 - **步驟 1.2.3：綁定觸發器**
-    - 添加觸發器到 `auth.users`。
-    - 測試：註冊用戶，驗證 `users` 表記錄。
+  - 添加觸發器到 `auth.users`。
+  - 測試：註冊用戶，驗證 `users` 表記錄。
 
 #### 迭代 1.4：前端認證表單
+
 - **步驟 1.4.1：設置 React 專案**
-    - 創建 Vite 專案，添加依賴。
-    - 測試：啟動應用程式。
+  - 創建 Vite 專案，添加依賴。
+  - 測試：啟動應用程式。
 - **步驟 1.4.2：配置路由**
-    - 添加 `react-router-dom`，設置 `/register` 和 `/login` 路由。
-    - 測試：驗證路由導航。
+  - 添加 `react-router-dom`，設置 `/register` 和 `/login` 路由。
+  - 測試：驗證路由導航。
 - **步驟 1.4.3：實現註冊表單**
-    - 創建註冊組件，調用 `supabase.auth.signUp`。
-    - 測試：手動測試表單。
+  - 創建註冊組件，調用 `supabase.auth.signUp`。
+  - 測試：手動測試表單。
 - **步驟 1.4.4：實現登入表單**
-    - 創建登入組件，儲存 JWT。
-    - 測試：手動測試登入。
+  - 創建登入組件，儲存 JWT。
+  - 測試：手動測試登入。
 
 ---
 
 ## 步驟五：代碼生成提示（Prompts）
 
 以下是針對階段 1 的代碼生成提示，採用 TDD 方式，確保每個步驟可獨立實現並與前一步驟整合。每個提示包含：
+
 - **背景**：描述步驟目標和上下文。
 - **任務**：明確的代碼要求。
 - **測試要求**：單元測試、整合測試或手動測試。
@@ -316,79 +342,103 @@
 - **格式**：使用 Markdown 和 `<xaiArtifact>` 標籤。
 
 ### Prompt 1：創建資料庫表
+
 #### 背景
+
 這是 Threads Clone 專案的第一步，目標是創建資料庫表（`users`, `posts`, `replies`, `likes`, `follows`），為後續功能奠定基礎。使用 Supabase（PostgreSQL），確保表結構符合規格。
 
 #### 任務
+
 創建 `database-schema.sql`，包含：
+
 - `users` 表（無 `password_hash`，`id` 與 `auth.users.id` 同步）。
 - `posts`, `replies`, `likes`, `follows` 表，包含主鍵、外鍵和約束。
 - 啟用 UUID 擴展。
 
 #### 測試要求
+
 - 使用 Supabase CLI 執行腳本，驗證表結構。
 - 插入測試資料，檢查約束（例如 `username` 長度、`image_url` 格式）。
 
 #### 整合方式
+
 - 這是第一步，無需整合。
 - 後續步驟（索引、觸發器）將基於此腳本。
 
 ---
 
 ### Prompt 2：添加索引
+
 #### 背景
+
 在創建資料庫表後，需添加索引以優化查詢性能，特別是全文搜尋（`content_tsv`）和常見查詢（`user_id`, `post_id`）。
 
 #### 任務
+
 更新 `database-schema.sql`，添加以下索引：
+
 - 全文搜尋索引（`idx_posts_content_tsv`, `idx_replies_content_tsv`）。
 - 外鍵索引（`idx_posts_user_id`, `idx_replies_post_id` 等）。
 - 刪除篩選索引（`idx_posts_is_deleted`, `idx_replies_is_deleted`）。
 
 #### 測試要求
+
 - 使用 `EXPLAIN` 驗證索引使用。
 - 插入測試資料，比較有無索引的查詢性能。
 
 #### 整合方式
+
 - 追加到 `database-schema.sql`，基於 Prompt 1 的表結構。
 
 ---
 
 ### Prompt 3：實現觸發器
+
 #### 背景
+
 為支援全文搜尋，需為 `posts` 和 `replies` 表添加觸發器，自動生成 `content_tsv`（僅限英文內容）。
 
 #### 任務
+
 更新 `database-schema.sql`，添加：
+
 - `detect_english` 函數，檢查是否為 ASCII 內容。
 - `update_content_tsv` 函數，生成 `content_tsv`。
 - 觸發器（`posts_tsv_trigger`, `replies_tsv_trigger`）。
 
 #### 測試要求
+
 - 插入英文內容，驗證 `content_tsv` 生成。
 - 插入非英文內容（例如中文），驗證 `content_tsv` 為 NULL。
 
 #### 整合方式
+
 - 追加到 `database-schema.sql`，基於 Prompt 2。
 
 ---
 
 ### Prompt 4：配置 RLS
+
 #### 背景
+
 為確保資料安全，需為所有表啟用 RLS，並添加政策，支援公開存取（`anon`）、認證存取（`authenticated`）和管理員權限。
 
 #### 任務
+
 更新 `database-schema.sql`，添加：
+
 - 啟用 RLS（`ALTER TABLE ... ENABLE ROW LEVEL SECURITY`）。
 - RLS 政策（`users`, `posts`, `replies`, `likes`, `follows`），如規格所述。
 
 #### 測試要求
+
 - 使用 Supabase CLI 模擬角色：
   - `anon`：驗證僅能查看未刪除貼文/回覆。
   - `authenticated`：驗證可創建貼文（需 `is_verified`）。
   - `admin`：驗證可刪除任何貼文。
 
 #### 整合方式
+
 - 追加到 `database-schema.sql`，基於 Prompt 3。
 
 ```sql
@@ -585,28 +635,33 @@ USING (follower_id = auth.uid())
 WITH CHECK (follower_id != followed_id);
 ```
 
-
 ---
 
 ### Prompt 5：配置 Supabase Auth
+
 #### 背景
+
 在資料庫結構完成後，需配置 Supabase Auth 以支援用戶註冊和郵件驗證。
 
 #### 任務
+
 創建 `supabase-config.md`，記錄 Supabase Auth 配置：
+
 - 啟用郵件驗證。
 - 設置環境變數（`SUPABASE_URL`, `SUPABASE_KEY`）。
 - 提供測試腳本（SQL），模擬註冊。
 
 #### 測試要求
+
 - 手動註冊用戶，驗證郵件發送。
 - 執行測試腳本，檢查 `auth.users` 記錄。
 
 #### 整合方式
+
 - 獨立文件，供後續步驟參考。
 - 環境變數用於後端和前端。
 
-```
+````
 # Supabase Auth 配置
 
 ## 目標
@@ -638,24 +693,30 @@ WITH CHECK (follower_id != followed_id);
 - 手動註冊用戶（透過 Supabase API 或後續前端）。
 - 驗證收到郵件，點擊連結後 `auth.users.email_verified` 為 TRUE。
 
-```
+````
 
 ---
 
 ### Prompt 6：創建同步觸發器
+
 #### 背景
+
 為同步 `auth.users` 和 `users` 表，需創建觸發器，當新用戶註冊時自動插入 `users` 表。
 
 #### 任務
+
 更新 `database-schema.sql`，添加：
+
 - `handle_new_user` 函數，插入 `users` 表。
 - 觸發器，綁定到 `auth.users` 的插入事件。
 
 #### 測試要求
+
 - 模擬插入 `auth.users`，驗證 `users` 表記錄。
 - 檢查 `username`（預設值）、`is_verified` 等欄位。
 
 #### 整合方式
+
 - 追加到 `database-schema.sql`，基於 Prompt 4。
 
 ```sql
@@ -687,20 +748,26 @@ CREATE TRIGGER on_auth_user_created
 ---
 
 ### Prompt 7：設置 Spring Boot 專案
+
 #### 背景
+
 開始後端開發，設置 Spring Boot 專案，準備實現認證 API。
 
 #### 任務
+
 創建 Spring Boot 專案，包含：
+
 - `pom.xml`：添加依賴（`spring-web`, `spring-data-jpa`, `supabase-java`）。
 - `application.yml`：配置 Supabase 連線。
 - `Application.java`：主應用程式類。
 
 #### 測試要求
+
 - 執行 `mvn spring-boot:run`，驗證應用程式啟動。
 - 檢查日誌，確保無錯誤。
 
 #### 整合方式
+
 - 獨立專案，為後續 API 提供基礎。
 - 使用 Prompt 5 的環境變數。
 
@@ -784,7 +851,7 @@ server:
 ```
 
 ```java
-package com.threadsclone.backend;
+package com.threadclone.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -800,30 +867,38 @@ public class Application {
 ---
 
 ### Prompt 8：實現註冊 API
+
 #### 背景
+
 在 Spring Boot 專案中實現 `POST /api/register`，使用 Supabase Auth 註冊用戶，並同步到 `users` 表。
 
 #### 任務
+
 創建以下文件：
+
 - `AuthController.java`：處理 `POST /api/register`。
 - `AuthService.java`：實現註冊邏輯。
 - `AuthControllerTest.java`：單元測試。
 - `AuthIntegrationTest.java`：整合測試。
 
 #### 測試要求
+
 - 單元測試：模擬 Supabase 客戶端，驗證註冊邏輯。
 - 整合測試：連線 Supabase，驗證 API 和 `users` 表同步。
 
 #### 整合方式
+
 - 基於 Prompt 7 的 Spring Boot 專案。
 - 使用 Prompt 5 的環境變數和 Prompt 6 的觸發器。
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.RegisterRequest;
-import com.threadsclone.backend.dto.RegisterResponse;
-import com.threadsclone.backend.service.AuthService;
+package com.threadclone.backend;
+
+import com.threadclone.backend.dto.RegisterRequest;
+import com.threadclone.backend.dto.RegisterResponse;
+import com.threadclone.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -847,11 +922,10 @@ public class AuthController {
 }
 ```
 
-
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.RegisterRequest;
+import com.threadclone.backend.dto.RegisterRequest;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.gotrue.Gotrue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -874,14 +948,12 @@ public class AuthService {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.RegisterRequest;
-import com.threadsclone.backend.dto.RegisterResponse;
-import com.threadsclone.backend.service.AuthService;
+import com.threadclone.backend.dto.RegisterRequest;
+import com.threadclone.backend.dto.RegisterResponse;
+import com.threadclone.backend.service.AuthService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -917,9 +989,9 @@ public class AuthControllerTest {
 ```
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.RegisterRequest;
+import com.threadclone.backend.dto.RegisterRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -950,18 +1022,22 @@ public class AuthIntegrationTest {
 }
 ```
 
-
 ### 階段 2：貼文與時間軸
+
 目標：實現貼文創建、刪除和時間軸顯示功能，包含後端 API 和前端組件，支援無限滾動。
 
 #### 迭代 2.1：貼文 API
 
 ##### Prompt 9：實現貼文創建 API
+
 ###### 背景
+
 在階段 1 完成資料庫和認證基礎後，需實現 `POST /api/posts` API，允許驗證用戶創建貼文，內容儲存到 `posts` 表，遵守 RLS（僅 `is_verified = TRUE` 的用戶可創建）。
 
 ###### 任務
+
 創建以下文件：
+
 - `PostController.java`：處理 `POST /api/posts`。
 - `PostService.java`：實現貼文創建邏輯，使用 Supabase Java 客戶端。
 - `Post.java`：貼文實體類（JPA）。
@@ -969,20 +1045,21 @@ public class AuthIntegrationTest {
 - `PostIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：模擬 Supabase 客戶端，驗證內容長度（≤ 500 字）、圖片 URL 格式（jpg/png/gif）。
 - **整合測試**：連線 Supabase，驗證貼文創建、RLS（未驗證用戶被阻止）、匿名選項。
 
 ###### 整合方式
+
 - 基於 Prompt 7 的 Spring Boot 專案，添加 `PostController` 和 `PostService`。
 - 使用 `database-schema.sql` 的 `posts` 表和 RLS。
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -1007,10 +1084,10 @@ public class PostController {
 ```
 
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1066,7 +1143,7 @@ public class PostService {
 ```
 
 ```java
-package com.threadsclone.backend.entity;
+package com.threadclone.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
@@ -1107,13 +1184,12 @@ public class Post {
 }
 ```
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -1149,12 +1225,10 @@ public class PostControllerTest {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -1185,32 +1259,37 @@ public class PostIntegrationTest {
 }
 ```
 
-
 ##### Prompt 10：實現貼文刪除 API
+
 ###### 背景
+
 實現 `DELETE /api/posts/:post_id` API，允許用戶軟刪除自己的貼文（設置 `is_deleted = TRUE`），遵守 RLS。
 
 ###### 任務
+
 更新以下文件：
+
 - `PostController.java`：添加 `DELETE /api/posts/:post_id`。
 - `PostService.java`：實現刪除邏輯。
 - `PostControllerTest.java`：添加單元測試。
 - `PostIntegrationTest.java`：添加整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證僅貼文擁有者可刪除，模擬 RLS。
 - **整合測試**：驗證軟刪除（`is_deleted = TRUE`），非擁有者和未驗證用戶被阻止。
 
 ###### 整合方式
+
 - 擴展 Prompt 9 的 `PostController` 和 `PostService`。
 - 依賴 `posts` 表的 RLS（`Users delete own posts`）。
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -1237,12 +1316,11 @@ public class PostController {
 }
 ```
 
-
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1310,11 +1388,11 @@ public class PostService {
 ```
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -1362,9 +1440,9 @@ public class PostControllerTest {
 ```
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -1410,30 +1488,36 @@ public class PostIntegrationTest {
 #### 迭代 2.2：時間軸 API
 
 ##### Prompt 11：實現時間軸查詢 API
+
 ###### 背景
+
 實現 `GET /api/timeline` API，返回用戶及其追蹤者的貼文（`is_deleted = FALSE`），支援游標分頁（每次 20 條）。
 
 ###### 任務
+
 更新以下文件：
+
 - `PostController.java`：添加 `GET /api/timeline`。
 - `PostService.java`：實現時間軸查詢邏輯。
 - `PostControllerTest.java`：添加單元測試。
 - `PostIntegrationTest.java`：添加整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證分頁邏輯（20 條/頁），模擬追蹤者貼文。
 - **整合測試**：驗證返回未刪除貼文，檢查游標分頁。
 
 ###### 整合方式
+
 - 擴展 Prompt 10 的 `PostController` 和 `PostService`。
 - 依賴 `posts` 和 `follows` 表的 RLS。
 
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -1474,10 +1558,10 @@ public class PostController {
 ```
 
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1585,13 +1669,12 @@ public class PostService {
 
 ```
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -1653,13 +1736,11 @@ public class PostControllerTest {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -1716,29 +1797,35 @@ public class PostIntegrationTest {
 #### 迭代 2.3：前端貼文與時間軸
 
 ##### Prompt 12：實現貼文表單
+
 ###### 背景
+
 在前端實現貼文表單，調用 `POST /api/posts`，支援內容輸入、圖片 URL 和匿名選項，使用 Tailwind CSS 設計。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/components/PostForm.jsx`：貼文表單組件。
 - `src/components/PostForm.test.jsx`：單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證表單提交，模擬 API 呼叫，檢查錯誤處理（例如內容過長）。
 - **手動測試**：驗證表單樣式和提交功能。
 
 ###### 整合方式
+
 - 基於階段 1 的 React 專案（Prompt 8），添加新組件。
 - 調用 `POST /api/posts`（Prompt 9）。
 
 ```jsx
-import { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function PostForm() {
-  const [content, setContent] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [content, setContent] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [error, setError] = useState(null);
 
@@ -1747,18 +1834,18 @@ export default function PostForm() {
     setError(null);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
-      const response = await fetch('/api/posts', {
-        method: 'POST',
+      if (error || !data.session) throw new Error("未登入");
+      const response = await fetch("/api/posts", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${data.session.access_token}`,
         },
         body: JSON.stringify({ content, imageUrl, isAnonymous }),
       });
-      if (!response.ok) throw new Error('創建貼文失敗');
-      setContent('');
-      setImageUrl('');
+      if (!response.ok) throw new Error("創建貼文失敗");
+      setContent("");
+      setImageUrl("");
       setIsAnonymous(false);
     } catch (err) {
       setError(err.message);
@@ -1766,7 +1853,10 @@ export default function PostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+    >
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -1800,16 +1890,14 @@ export default function PostForm() {
     </form>
   );
 }
-
 ```
 
-
 ```jsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import PostForm from './PostForm';
-import { supabase } from '../lib/supabase';
+import { render, screen, fireEvent } from "@testing-library/react";
+import PostForm from "./PostForm";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -1817,10 +1905,10 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('PostForm', () => {
+describe("PostForm", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
     global.fetch = jest.fn(() =>
@@ -1831,46 +1919,54 @@ describe('PostForm', () => {
     );
   });
 
-  test('should submit post successfully', async () => {
+  test("should submit post successfully", async () => {
     render(<PostForm />);
-    fireEvent.change(screen.getByPlaceholderText('分享你的想法...'), {
-      target: { value: 'Test post' },
+    fireEvent.change(screen.getByPlaceholderText("分享你的想法..."), {
+      target: { value: "Test post" },
     });
-    fireEvent.click(screen.getByText('發布'));
+    fireEvent.click(screen.getByText("發布"));
     expect(global.fetch).toHaveBeenCalledWith(
-      '/api/posts',
+      "/api/posts",
       expect.objectContaining({
-        method: 'POST',
+        method: "POST",
         headers: expect.any(Object),
-        body: JSON.stringify({ content: 'Test post', imageUrl: '', isAnonymous: false }),
+        body: JSON.stringify({
+          content: "Test post",
+          imageUrl: "",
+          isAnonymous: false,
+        }),
       })
     );
   });
 });
-
 ```
 
 ##### Prompt 13：實現時間軸組件
+
 ###### 背景
+
 實現時間軸組件，顯示 `GET /api/timeline` 返回的貼文，支援無限滾動，使用 Intersection Observer。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/components/Timeline.jsx`：時間軸組件。
 - `src/components/Timeline.test.jsx`：單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證貼文渲染，模擬無限滾動。
 - **手動測試**：驗證滾動加載和卡片樣式。
 
 ###### 整合方式
+
 - 基於 Prompt 12 的 React 專案，添加新組件。
 - 調用 `GET /api/timeline`（Prompt 11）。
 
-
 ```jsx
-import { useState, useEffect, useRef } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect, useRef } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Timeline() {
   const [posts, setPosts] = useState([]);
@@ -1884,13 +1980,13 @@ export default function Timeline() {
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/timeline?page=${page}&size=20`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('加載貼文失敗');
+      if (!response.ok) throw new Error("加載貼文失敗");
       const newPosts = await response.json();
       setPosts((prev) => [...prev, ...newPosts]);
       setPage(page + 1);
@@ -1922,13 +2018,21 @@ export default function Timeline() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       {posts.map((post) => (
-        <div key={post.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <div
+          key={post.id}
+          className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+        >
           <p className="text-gray-800 dark:text-gray-200">{post.content}</p>
           {post.image_url && (
-            <img src={post.image_url} alt="Post" className="mt-2 rounded-md max-w-full" />
+            <img
+              src={post.image_url}
+              alt="Post"
+              className="mt-2 rounded-md max-w-full"
+            />
           )}
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {post.is_anonymous ? '匿名' : post.user_id} · {new Date(post.created_at).toLocaleString()}
+            {post.is_anonymous ? "匿名" : post.user_id} ·{" "}
+            {new Date(post.created_at).toLocaleString()}
           </p>
         </div>
       ))}
@@ -1937,16 +2041,14 @@ export default function Timeline() {
     </div>
   );
 }
-
 ```
 
-
 ```jsx
-import { render, screen } from '@testing-library/react';
-import Timeline from './Timeline';
-import { supabase } from '../lib/supabase';
+import { render, screen } from "@testing-library/react";
+import Timeline from "./Timeline";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -1954,41 +2056,51 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('Timeline', () => {
+describe("Timeline", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve([
-          { id: '1', content: 'Test post', user_id: 'user1', created_at: '2025-05-10T12:00:00Z' },
-        ]),
+        json: () =>
+          Promise.resolve([
+            {
+              id: "1",
+              content: "Test post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
+            },
+          ]),
       })
     );
   });
 
-  test('should render posts', async () => {
+  test("should render posts", async () => {
     render(<Timeline />);
-    expect(await screen.findByText('Test post')).toBeInTheDocument();
+    expect(await screen.findByText("Test post")).toBeInTheDocument();
   });
 });
-
 ```
 
 ### 階段 3：回覆與點讚
+
 目標：實現回覆和點讚功能，包含 API 和前端交互。
 
 #### 迭代 3.1：回覆 API
 
 ##### Prompt 14：實現回覆創建 API
+
 ###### 背景
+
 實現 `POST /api/posts/:post_id/replies`，允許驗證用戶創建回覆，儲存到 `replies` 表，遵守 RLS。
 
 ###### 任務
+
 創建以下文件：
+
 - `ReplyController.java`：處理 `POST /api/posts/:post_id/replies`。
 - `ReplyService.java`：實現回覆創建邏輯。
 - `Reply.java`：回覆實體類。
@@ -1996,20 +2108,21 @@ describe('Timeline', () => {
 - `ReplyIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證內容長度（≤ 200 字）、圖片 URL 格式。
 - **整合測試**：驗證回覆創建、RLS（未驗證用戶被阻止）、`replies_count` 更新。
 
 ###### 整合方式
+
 - 擴展 Prompt 11 的 Spring Boot 專案，添加新控制器和服務。
 - 依賴 `replies` 表和 RLS。
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
-import com.threadsclone.backend.service.ReplyService;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.service.ReplyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -2033,13 +2146,11 @@ public class ReplyController {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2113,10 +2224,8 @@ public class ReplyService {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.entity;
+package com.threadclone.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
@@ -2154,13 +2263,12 @@ public class Reply {
 }
 ```
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
-import com.threadsclone.backend.service.ReplyService;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.service.ReplyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -2200,10 +2308,10 @@ public class ReplyControllerTest {
 
 ```java
 
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -2237,31 +2345,37 @@ public class ReplyIntegrationTest {
 ```
 
 ##### Prompt 15：實現回覆刪除 API
+
 ###### 背景
+
 實現 `DELETE /api/replies/:reply_id`，允許用戶軟刪除自己的回覆，更新 `posts.replies_count`。
 
 ###### 任務
+
 更新以下文件：
+
 - `ReplyController.java`：添加 `DELETE /api/replies/:reply_id`。
 - `ReplyService.java`：實現刪除邏輯。
 - `ReplyControllerTest.java`：添加單元測試。
 - `ReplyIntegrationTest.java`：添加整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證僅回覆擁有者可刪除，模擬 RLS。
 - **整合測試**：驗證軟刪除（`is_deleted = TRUE`），檢查 `replies_count`。
 
 ###### 整合方式
+
 - 擴展 Prompt 14 的 `ReplyController` 和 `ReplyService`。
 - 依賴 `replies` 和 `posts` 表的 RLS。
 
 ```java
 
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
-import com.threadsclone.backend.service.ReplyService;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.service.ReplyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -2291,13 +2405,11 @@ public class ReplyController {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2395,14 +2507,12 @@ public class ReplyService {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
-import com.threadsclone.backend.service.ReplyService;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.service.ReplyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -2450,13 +2560,11 @@ public class ReplyControllerTest {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.ReplyRequest;
-import com.threadsclone.backend.dto.ReplyResponse;
+import com.threadclone.backend.dto.ReplyRequest;
+import com.threadclone.backend.dto.ReplyResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -2500,15 +2608,18 @@ public class ReplyIntegrationTest {
 }
 ```
 
-
 #### 迭代 3.2：點讚 API
 
 ##### Prompt 16：實現點讚 API
+
 ###### 背景
+
 實現 `POST /api/posts/:post_id/like` 和 `DELETE /api/posts/:post_id/like`，管理用戶點讚，更新 `posts.likes_count`。
 
 ###### 任務
+
 創建以下文件：
+
 - `LikeController.java`：處理點讚 API。
 - `LikeService.java`：實現點讚邏輯。
 - `Like.java`：點讚實體類。
@@ -2516,18 +2627,19 @@ public class ReplyIntegrationTest {
 - `LikeIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證點讚/取消邏輯，模擬 RLS。
 - **整合測試**：驗證 `likes` 表記錄和 `posts.likes_count` 更新。
 
 ###### 整合方式
+
 - 擴展 Prompt 15 的 Spring Boot 專案，添加新控制器和服務。
 - 依賴 `likes` 和 `posts` 表的 RLS。
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.service.LikeService;
+import com.threadclone.backend.service.LikeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -2555,9 +2667,8 @@ public class LikeController {
 
 ```
 
-
 ```java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
@@ -2625,10 +2736,8 @@ public class LikeService {
 }
 ```
 
-
-
 ```java
-package com.threadsclone.backend.entity;
+package com.threadclone.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
@@ -2653,11 +2762,10 @@ public class Like {
 
 ```
 
-
 ```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.service.LikeService;
+import com.threadclone.backend.service.LikeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -2697,10 +2805,9 @@ public class LikeControllerTest {
 }
 ```
 
-
+````java
 ```java
-```java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2739,12 +2846,11 @@ public class LikeIntegrationTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
-```
-
+````
 
 #### 迭代 3.3：前端回覆與點讚
 
-感謝您的要求！以下將從 **Prompt 17：實現回覆表單和點讚按鈕** 開始，繼續提供 Threads Clone 社交媒體平台的藍圖，涵蓋剩餘部分的代碼生成提示（Prompt 17 及後續），直到完成所有階段（階段 3 至階段 6）。所有代碼將使用標準 Markdown 格式（```）包裝，不使用 `<xaiArtifact>` 標籤。回應將使用 **繁體中文（台灣）**，遵循您指定的結構化、詳細且非冗餘的風格，並基於已更新的 `database-schema.sql`（包含 `handle_new_user` 函數和修正後的 RLS 政策）。每個提示將包含背景、任務、測試要求和整合方式，確保與前述步驟整合，並遵循 **TDD（測試驅動開發）** 方法。
+感謝您的要求！以下將從 **Prompt 17：實現回覆表單和點讚按鈕** 開始，繼續提供 Threads Clone 社交媒體平台的藍圖，涵蓋剩餘部分的代碼生成提示（Prompt 17 及後續），直到完成所有階段（階段 3 至階段 6）。所有代碼將使用標準 Markdown 格式（```）包裝，不使用 `<xaiArtifact>`標籤。回應將使用 **繁體中文（台灣）**，遵循您指定的結構化、詳細且非冗餘的風格，並基於已更新的`database-schema.sql`（包含 `handle_new_user` 函數和修正後的 RLS 政策）。每個提示將包含背景、任務、測試要求和整合方式，確保與前述步驟整合，並遵循 **TDD（測試驅動開發）** 方法。
 
 ---
 
@@ -2755,27 +2861,33 @@ public class LikeIntegrationTest {
 #### 迭代 3.3：前端回覆與點讚
 
 ##### Prompt 17：實現回覆表單和點讚按鈕
+
 ###### 背景
+
 在前端實現回覆表單（調用 `POST /api/posts/:post_id/replies`）和點讚按鈕（調用 `POST/DELETE /api/posts/:post_id/like`），顯示回覆列表和點讚數。該功能增強時間軸組件，提供用戶與貼文的交互。
 
 ###### 任務
+
 更新以下文件：
+
 - `src/components/Timeline.jsx`：添加回覆表單、回覆列表和點讚按鈕。
 - `src/components/Timeline.test.jsx`：添加單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證回覆提交和點讚交互，模擬 API 呼叫，檢查錯誤處理（例如內容過長、未登入）。
 - **手動測試**：驗證回覆列表渲染、點讚數更新和樣式（使用 Tailwind CSS）。
 
 ###### 整合方式
+
 - 基於階段 2 的 `Timeline.jsx`（Prompt 13），擴展功能。
 - 調用 `POST /api/posts/:post_id/replies`（Prompt 14）、`POST/DELETE /api/posts/:post_id/like`（Prompt 16）。
 - 依賴 `posts`、`replies` 和 `likes` 表的 RLS。
 
 ```jsx
 // src/components/Timeline.jsx
-import { useState, useEffect, useRef } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect, useRef } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Timeline() {
   const [posts, setPosts] = useState([]);
@@ -2789,13 +2901,13 @@ export default function Timeline() {
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/timeline?page=${page}&size=20`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('加載貼文失敗');
+      if (!response.ok) throw new Error("加載貼文失敗");
       const newPosts = await response.json();
       setPosts((prev) => [...prev, ...newPosts]);
       setPage(page + 1);
@@ -2810,16 +2922,16 @@ export default function Timeline() {
   const handleReply = async (postId, content, isAnonymous) => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/posts/${postId}/replies`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${data.session.access_token}`,
         },
         body: JSON.stringify({ content, imageUrl: null, isAnonymous }),
       });
-      if (!response.ok) throw new Error('回覆失敗');
+      if (!response.ok) throw new Error("回覆失敗");
       loadPosts(); // 重新加載貼文
     } catch (err) {
       console.error(err);
@@ -2829,14 +2941,14 @@ export default function Timeline() {
   const handleLike = async (postId, isLiked) => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/posts/${postId}/like`, {
-        method: isLiked ? 'DELETE' : 'POST',
+        method: isLiked ? "DELETE" : "POST",
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('點讚失敗');
+      if (!response.ok) throw new Error("點讚失敗");
       loadPosts(); // 重新加載貼文
     } catch (err) {
       console.error(err);
@@ -2863,29 +2975,45 @@ export default function Timeline() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       {posts.map((post) => (
-        <div key={post.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <div
+          key={post.id}
+          className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+        >
           <p className="text-gray-800 dark:text-gray-200">{post.content}</p>
           {post.image_url && (
-            <img src={post.image_url} alt="Post" className="mt-2 rounded-md max-w-full" />
+            <img
+              src={post.image_url}
+              alt="Post"
+              className="mt-2 rounded-md max-w-full"
+            />
           )}
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {post.is_anonymous ? '匿名' : post.user_id} · {new Date(post.created_at).toLocaleString()}
+            {post.is_anonymous ? "匿名" : post.user_id} ·{" "}
+            {new Date(post.created_at).toLocaleString()}
           </p>
           <div className="flex items-center mt-2">
             <button
               onClick={() => handleLike(post.id, post.is_liked)}
-              className={`mr-4 ${post.is_liked ? 'text-red-500' : 'text-gray-500'}`}
+              className={`mr-4 ${
+                post.is_liked ? "text-red-500" : "text-gray-500"
+              }`}
             >
-              {post.is_liked ? '取消讚' : '讚'} ({post.likes_count})
+              {post.is_liked ? "取消讚" : "讚"} ({post.likes_count})
             </button>
             <span>{post.replies_count} 回覆</span>
           </div>
           <div className="mt-2">
             {post.replies?.map((reply) => (
-              <div key={reply.id} className="pl-4 border-l-2 border-gray-300 dark:border-gray-600">
-                <p className="text-gray-800 dark:text-gray-200">{reply.content}</p>
+              <div
+                key={reply.id}
+                className="pl-4 border-l-2 border-gray-300 dark:border-gray-600"
+              >
+                <p className="text-gray-800 dark:text-gray-200">
+                  {reply.content}
+                </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {reply.is_anonymous ? '匿名' : reply.user_id} · {new Date(reply.created_at).toLocaleString()}
+                  {reply.is_anonymous ? "匿名" : reply.user_id} ·{" "}
+                  {new Date(reply.created_at).toLocaleString()}
                 </p>
               </div>
             ))}
@@ -2928,11 +3056,11 @@ export default function Timeline() {
 
 ```jsx
 // src/components/Timeline.test.jsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import Timeline from './Timeline';
-import { supabase } from '../lib/supabase';
+import { render, screen, fireEvent } from "@testing-library/react";
+import Timeline from "./Timeline";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -2940,71 +3068,102 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('Timeline', () => {
+describe("Timeline", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
     global.fetch = jest.fn();
   });
 
-  test('should render posts', async () => {
+  test("should render posts", async () => {
     global.fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve([
-        { id: '1', content: 'Test post', user_id: 'user1', created_at: '2025-05-10T12:00:00Z', likes_count: 0, replies_count: 0, is_liked: false },
-      ]),
+      json: () =>
+        Promise.resolve([
+          {
+            id: "1",
+            content: "Test post",
+            user_id: "user1",
+            created_at: "2025-05-10T12:00:00Z",
+            likes_count: 0,
+            replies_count: 0,
+            is_liked: false,
+          },
+        ]),
     });
     render(<Timeline />);
-    expect(await screen.findByText('Test post')).toBeInTheDocument();
+    expect(await screen.findByText("Test post")).toBeInTheDocument();
   });
 
-  test('should submit reply', async () => {
+  test("should submit reply", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve([
-          { id: '1', content: 'Test post', user_id: 'user1', created_at: '2025-05-10T12:00:00Z', likes_count: 0, replies_count: 0, is_liked: false },
-        ]),
+        json: () =>
+          Promise.resolve([
+            {
+              id: "1",
+              content: "Test post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
+              likes_count: 0,
+              replies_count: 0,
+              is_liked: false,
+            },
+          ]),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({}),
       });
     render(<Timeline />);
-    const textarea = await screen.findByPlaceholderText('回覆...');
-    fireEvent.change(textarea, { target: { value: 'Test reply' } });
-    fireEvent.click(screen.getByText('回覆'));
+    const textarea = await screen.findByPlaceholderText("回覆...");
+    fireEvent.change(textarea, { target: { value: "Test reply" } });
+    fireEvent.click(screen.getByText("回覆"));
     expect(global.fetch).toHaveBeenCalledWith(
-      '/api/posts/1/replies',
+      "/api/posts/1/replies",
       expect.objectContaining({
-        method: 'POST',
+        method: "POST",
         headers: expect.any(Object),
-        body: JSON.stringify({ content: 'Test reply', imageUrl: null, isAnonymous: false }),
+        body: JSON.stringify({
+          content: "Test reply",
+          imageUrl: null,
+          isAnonymous: false,
+        }),
       })
     );
   });
 
-  test('should toggle like', async () => {
+  test("should toggle like", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve([
-          { id: '1', content: 'Test post', user_id: 'user1', created_at: '2025-05-10T12:00:00Z', likes_count: 0, replies_count: 0, is_liked: false },
-        ]),
+        json: () =>
+          Promise.resolve([
+            {
+              id: "1",
+              content: "Test post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
+              likes_count: 0,
+              replies_count: 0,
+              is_liked: false,
+            },
+          ]),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({}),
       });
     render(<Timeline />);
-    const likeButton = await screen.findByText('讚 (0)');
+    const likeButton = await screen.findByText("讚 (0)");
     fireEvent.click(likeButton);
     expect(global.fetch).toHaveBeenCalledWith(
-      '/api/posts/1/like',
+      "/api/posts/1/like",
       expect.objectContaining({
-        method: 'POST',
+        method: "POST",
         headers: expect.any(Object),
       })
     );
@@ -3013,16 +3172,21 @@ describe('Timeline', () => {
 ```
 
 ### 階段 4：用戶追蹤與個人資料
+
 目標：實現用戶追蹤功能和個人資料頁面，包含 API 和前端組件。
 
 #### 迭代 4.1：追蹤 API
 
 ##### Prompt 18：實現追蹤 API
+
 ###### 背景
+
 實現 `POST /api/users/:user_id/follow` 和 `DELETE /api/users/:user_id/follow`，管理用戶追蹤關係，儲存到 `follows` 表，遵守 RLS。
 
 ###### 任務
+
 創建以下文件：
+
 - `FollowController.java`：處理追蹤 API。
 - `FollowService.java`：實現追蹤邏輯。
 - `Follow.java`：追蹤實體類。
@@ -3030,18 +3194,20 @@ describe('Timeline', () => {
 - `FollowIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證追蹤/取消邏輯，模擬 RLS。
 - **整合測試**：驗證 `follows` 表記錄，檢查重複追蹤錯誤。
 
 ###### 整合方式
+
 - 擴展階段 3 的 Spring Boot 專案，添加新控制器和服務。
 - 依賴 `follows` 表的 RLS（`Users manage own follows`）。
 
 ```java
 // src/main/java/com/threadsclone/backend/controller/FollowController.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.service.FollowService;
+import com.threadclone.backend.service.FollowService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -3070,7 +3236,7 @@ public class FollowController {
 
 ```java
 // src/main/java/com/threadsclone/backend/service/FollowService.java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
@@ -3117,7 +3283,7 @@ public class FollowService {
 
 ```java
 // src/main/java/com/threadsclone/backend/entity/Follow.java
-package com.threadsclone.backend.entity;
+package com.threadclone.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
@@ -3143,9 +3309,9 @@ public class Follow {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/FollowControllerTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.service.FollowService;
+import com.threadclone.backend.service.FollowService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -3187,7 +3353,7 @@ public class FollowControllerTest {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/FollowIntegrationTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -3231,31 +3397,37 @@ public class FollowIntegrationTest {
 #### 迭代 4.2：個人資料 API
 
 ##### Prompt 19：實現個人資料 API
+
 ###### 背景
+
 實現 `GET /api/users/:user_id` 和 `PUT /api/users/me`，分別用於查看用戶資料和更新個人資料（`username` 和 `bio`），遵守 RLS。
 
 ###### 任務
+
 創建以下文件：
+
 - `UserController.java`：處理用戶資料 API。
 - `UserService.java`：實現用戶資料邏輯。
 - `UserControllerTest.java`：單元測試。
 - `UserIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證資料檢索和更新，檢查 `username`（3-50 字）、`bio`（≤ 160 字）約束。
 - **整合測試**：驗證 RLS（僅能查看自己或管理員查看所有），檢查更新後資料。
 
 ###### 整合方式
+
 - 擴展 Prompt 18 的 Spring Boot 專案，添加新控制器和服務。
 - 依賴 `users` 表的 RLS（`Users view own profile`, `Users update own profile`）。
 
 ```java
 // src/main/java/com/threadsclone/backend/controller/UserController.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.UserRequest;
-import com.threadsclone.backend.dto.UserResponse;
-import com.threadsclone.backend.service.UserService;
+import com.threadclone.backend.dto.UserRequest;
+import com.threadclone.backend.dto.UserResponse;
+import com.threadclone.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -3284,10 +3456,10 @@ public class UserController {
 
 ```java
 // src/main/java/com/threadsclone/backend/service/UserService.java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.UserRequest;
-import com.threadsclone.backend.dto.UserResponse;
+import com.threadclone.backend.dto.UserRequest;
+import com.threadclone.backend.dto.UserResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -3354,11 +3526,11 @@ public class UserService {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/UserControllerTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.UserRequest;
-import com.threadsclone.backend.dto.UserResponse;
-import com.threadsclone.backend.service.UserService;
+import com.threadclone.backend.dto.UserRequest;
+import com.threadclone.backend.dto.UserResponse;
+import com.threadclone.backend.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -3408,10 +3580,10 @@ public class UserControllerTest {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/UserIntegrationTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.UserRequest;
-import com.threadsclone.backend.dto.UserResponse;
+import com.threadclone.backend.dto.UserRequest;
+import com.threadclone.backend.dto.UserResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -3457,27 +3629,33 @@ public class UserIntegrationTest {
 #### 迭代 4.3：前端個人資料
 
 ##### Prompt 20：實現個人資料頁面
+
 ###### 背景
+
 實現個人資料頁面，顯示用戶資料（`GET /api/users/:user_id`）、貼文和追蹤狀態，允許編輯個人資料（`PUT /api/users/me`）和追蹤操作（`POST/DELETE /api/users/:user_id/follow`）。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/pages/Profile.jsx`：個人資料頁面組件。
 - `src/pages/Profile.test.jsx`：單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證資料渲染、編輯表單提交、追蹤按鈕交互，模擬 API 呼叫。
 - **手動測試**：驗證頁面樣式和交互（使用 Tailwind CSS）。
 
 ###### 整合方式
+
 - 基於階段 3 的 React 專案，添加新頁面。
 - 調用 `GET /api/users/:user_id`、`PUT /api/users/me`（Prompt 19）、`POST/DELETE /api/users/:user_id/follow`（Prompt 18）。
 
 ```jsx
 // src/pages/Profile.jsx
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 export default function Profile() {
   const { userId } = useParams();
@@ -3485,24 +3663,24 @@ export default function Profile() {
   const [posts, setPosts] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [username, setUsername] = useState('');
-  const [bio, setBio] = useState('');
+  const [username, setUsername] = useState("");
+  const [bio, setBio] = useState("");
   const [error, setError] = useState(null);
 
   const loadUser = async () => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('加載用戶失敗');
+      if (!response.ok) throw new Error("加載用戶失敗");
       const userData = await response.json();
       setUser(userData);
       setUsername(userData.username);
-      setBio(userData.bio || '');
+      setBio(userData.bio || "");
     } catch (err) {
       setError(err.message);
     }
@@ -3511,13 +3689,13 @@ export default function Profile() {
   const loadPosts = async () => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/users/${userId}/posts`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('加載貼文失敗');
+      if (!response.ok) throw new Error("加載貼文失敗");
       setPosts(await response.json());
     } catch (err) {
       console.error(err);
@@ -3542,14 +3720,14 @@ export default function Profile() {
   const handleFollow = async () => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/users/${userId}/follow`, {
-        method: isFollowing ? 'DELETE' : 'POST',
+        method: isFollowing ? "DELETE" : "POST",
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('追蹤操作失敗');
+      if (!response.ok) throw new Error("追蹤操作失敗");
       setIsFollowing(!isFollowing);
     } catch (err) {
       setError(err.message);
@@ -3560,16 +3738,16 @@ export default function Profile() {
     e.preventDefault();
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
-      const response = await fetch('/api/users/me', {
-        method: 'PUT',
+      if (error || !data.session) throw new Error("未登入");
+      const response = await fetch("/api/users/me", {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${data.session.access_token}`,
         },
         body: JSON.stringify({ username, bio }),
       });
-      if (!response.ok) throw new Error('更新失敗');
+      if (!response.ok) throw new Error("更新失敗");
       setUser((prev) => ({ ...prev, username, bio }));
       setEditing(false);
     } catch (err) {
@@ -3589,21 +3767,27 @@ export default function Profile() {
     <div className="max-w-2xl mx-auto p-4">
       <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-bold">{user.username}</h2>
-        <p className="text-gray-600 dark:text-gray-400">{user.bio || '無簡介'}</p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">加入時間: {new Date(user.created_at).toLocaleDateString()}</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          {user.bio || "無簡介"}
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          加入時間: {new Date(user.created_at).toLocaleDateString()}
+        </p>
         {user.id === supabase.auth.getCurrentUser()?.id ? (
           <button
             onClick={() => setEditing(!editing)}
             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            {editing ? '取消' : '編輯資料'}
+            {editing ? "取消" : "編輯資料"}
           </button>
         ) : (
           <button
             onClick={handleFollow}
-            className={`mt-2 px-4 py-2 ${isFollowing ? 'bg-gray-500' : 'bg-blue-500'} text-white rounded-md hover:bg-opacity-80`}
+            className={`mt-2 px-4 py-2 ${
+              isFollowing ? "bg-gray-500" : "bg-blue-500"
+            } text-white rounded-md hover:bg-opacity-80`}
           >
-            {isFollowing ? '取消追蹤' : '追蹤'}
+            {isFollowing ? "取消追蹤" : "追蹤"}
           </button>
         )}
         {editing && (
@@ -3635,7 +3819,10 @@ export default function Profile() {
       </div>
       <div className="mt-4">
         {posts.map((post) => (
-          <div key={post.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <div
+            key={post.id}
+            className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+          >
             <p className="text-gray-800 dark:text-gray-200">{post.content}</p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {new Date(post.created_at).toLocaleString()}
@@ -3650,12 +3837,12 @@ export default function Profile() {
 
 ```jsx
 // src/pages/Profile.test.jsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom';
-import Profile from './Profile';
-import { supabase } from '../lib/supabase';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter, Route } from "react-router-dom";
+import Profile from "./Profile";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -3664,51 +3851,56 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('Profile', () => {
+describe("Profile", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
-    supabase.auth.getCurrentUser.mockReturnValue({ id: 'uuid' });
+    supabase.auth.getCurrentUser.mockReturnValue({ id: "uuid" });
     global.fetch = jest.fn();
   });
 
-  test('should render user profile', async () => {
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve({
-        id: 'uuid',
-        username: 'testuser',
-        bio: 'Test bio',
-        created_at: '2025-05-10T12:00:00Z',
-      }),
-    }).mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve([]),
-    }).mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve({ isFollowing: false }),
-    });
-    render(
-      <MemoryRouter initialEntries={['/profile/uuid']}>
-        <Route path="/profile/:userId" component={Profile} />
-      </MemoryRouter>
-    );
-    expect(await screen.findByText('testuser')).toBeInTheDocument();
-    expect(screen.getByText('Test bio')).toBeInTheDocument();
-  });
-
-  test('should update profile', async () => {
+  test("should render user profile", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({
-          id: 'uuid',
-          username: 'testuser',
-          bio: 'Test bio',
-          created_at: '2025-05-10T12:00:00Z',
-        }),
+        json: () =>
+          Promise.resolve({
+            id: "uuid",
+            username: "testuser",
+            bio: "Test bio",
+            created_at: "2025-05-10T12:00:00Z",
+          }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve([]),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({ isFollowing: false }),
+      });
+    render(
+      <MemoryRouter initialEntries={["/profile/uuid"]}>
+        <Route path="/profile/:userId" component={Profile} />
+      </MemoryRouter>
+    );
+    expect(await screen.findByText("testuser")).toBeInTheDocument();
+    expect(screen.getByText("Test bio")).toBeInTheDocument();
+  });
+
+  test("should update profile", async () => {
+    global.fetch
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            id: "uuid",
+            username: "testuser",
+            bio: "Test bio",
+            created_at: "2025-05-10T12:00:00Z",
+          }),
       })
       .mockResolvedValueOnce({
         ok: true,
@@ -3720,23 +3912,27 @@ describe('Profile', () => {
       })
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ username: 'newuser', bio: 'New bio' }),
+        json: () => Promise.resolve({ username: "newuser", bio: "New bio" }),
       });
     render(
-      <MemoryRouter initialEntries={['/profile/uuid']}>
+      <MemoryRouter initialEntries={["/profile/uuid"]}>
         <Route path="/profile/:userId" component={Profile} />
       </MemoryRouter>
     );
-    fireEvent.click(await screen.findByText('編輯資料'));
-    fireEvent.change(screen.getByPlaceholderText('用戶名'), { target: { value: 'newuser' } });
-    fireEvent.change(screen.getByPlaceholderText('簡介'), { target: { value: 'New bio' } });
-    fireEvent.click(screen.getByText('保存'));
+    fireEvent.click(await screen.findByText("編輯資料"));
+    fireEvent.change(screen.getByPlaceholderText("用戶名"), {
+      target: { value: "newuser" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("簡介"), {
+      target: { value: "New bio" },
+    });
+    fireEvent.click(screen.getByText("保存"));
     expect(global.fetch).toHaveBeenCalledWith(
-      '/api/users/me',
+      "/api/users/me",
       expect.objectContaining({
-        method: 'PUT',
+        method: "PUT",
         headers: expect.any(Object),
-        body: JSON.stringify({ username: 'newuser', bio: 'New bio' }),
+        body: JSON.stringify({ username: "newuser", bio: "New bio" }),
       })
     );
   });
@@ -3744,36 +3940,43 @@ describe('Profile', () => {
 ```
 
 ### 階段 5：搜索與通知
+
 目標：實現貼文搜索功能和簡單通知系統。
 
 #### 迭代 5.1：搜索 API
 
 ##### Prompt 21：實現貼文搜索 API
+
 ###### 背景
+
 實現 `GET /api/search`，使用 `posts.content_tsv` 進行全文搜索（僅英文），返回未刪除的貼文，支援分頁。
 
 ###### 任務
+
 更新以下文件：
+
 - `PostController.java`：添加 `GET /api/search`。
 - `PostService.java`：實現搜索邏輯。
 - `PostControllerTest.java`：添加單元測試。
 - `PostIntegrationTest.java`：添加整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證搜索關鍵字匹配，模擬 `to_tsvector` 查詢。
 - **整合測試**：驗證僅返回未刪除貼文，檢查分頁。
 
 ###### 整合方式
+
 - 擴展 Prompt 16 的 `PostController` 和 `PostService`。
 - 依賴 `posts` 表的 `content_tsv` 欄位和 RLS。
 
 ```java
 // src/main/java/com/threadsclone/backend/controller/PostController.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -3824,10 +4027,10 @@ public class PostController {
 
 ```java
 // src/main/java/com/threadsclone/backend/service/PostService.java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -3960,11 +4163,11 @@ public class PostService {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/PostControllerTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.PostService;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -4040,10 +4243,10 @@ public class PostControllerTest {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/PostIntegrationTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostRequest;
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostRequest;
+import com.threadclone.backend.dto.PostResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -4109,29 +4312,35 @@ public class PostIntegrationTest {
 #### 迭代 5.2：前端搜索
 
 ##### Prompt 22：實現搜索頁面
+
 ###### 背景
+
 實現搜索頁面，調用 `GET /api/search`，顯示匹配的貼文，支援關鍵字輸入和分頁。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/pages/Search.jsx`：搜索頁面組件。
 - `src/pages/Search.test.jsx`：單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證搜索結果渲染，模擬 API 呼叫。
 - **手動測試**：驗證搜索輸入和貼文卡片樣式。
 
 ###### 整合方式
+
 - 基於階段 4 的 React 專案，添加新頁面。
 - 調用 `GET /api/search`（Prompt 21）。
 
 ```jsx
 // src/pages/Search.jsx
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Search() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -4142,13 +4351,16 @@ export default function Search() {
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
-      const response = await fetch(`/api/search?query=${encodeURIComponent(query)}&page=${page}&size=20`, {
-        headers: {
-          Authorization: `Bearer ${data.session.access_token}`,
-        },
-      });
-      if (!response.ok) throw new Error('搜索失敗');
+      if (error || !data.session) throw new Error("未登入");
+      const response = await fetch(
+        `/api/search?query=${encodeURIComponent(query)}&page=${page}&size=20`,
+        {
+          headers: {
+            Authorization: `Bearer ${data.session.access_token}`,
+          },
+        }
+      );
+      if (!response.ok) throw new Error("搜索失敗");
       const newPosts = await response.json();
       setPosts((prev) => [...prev, ...newPosts]);
       setPage(page + 1);
@@ -4191,10 +4403,14 @@ export default function Search() {
       </form>
       <div>
         {posts.map((post) => (
-          <div key={post.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <div
+            key={post.id}
+            className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+          >
             <p className="text-gray-800 dark:text-gray-200">{post.content}</p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              {post.is_anonymous ? '匿名' : post.user_id} · {new Date(post.created_at).toLocaleString()}
+              {post.is_anonymous ? "匿名" : post.user_id} ·{" "}
+              {new Date(post.created_at).toLocaleString()}
             </p>
           </div>
         ))}
@@ -4207,11 +4423,11 @@ export default function Search() {
 
 ```jsx
 // src/pages/Search.test.jsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import Search from './Search';
-import { supabase } from '../lib/supabase';
+import { render, screen, fireEvent } from "@testing-library/react";
+import Search from "./Search";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -4219,26 +4435,34 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('Search', () => {
+describe("Search", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
     global.fetch = jest.fn();
   });
 
-  test('should render search results', async () => {
+  test("should render search results", async () => {
     global.fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve([
-        { id: '1', content: 'Hello world', user_id: 'user1', created_at: '2025-05-10T12:00:00Z' },
-      ]),
+      json: () =>
+        Promise.resolve([
+          {
+            id: "1",
+            content: "Hello world",
+            user_id: "user1",
+            created_at: "2025-05-10T12:00:00Z",
+          },
+        ]),
     });
     render(<Search />);
-    fireEvent.change(screen.getByPlaceholderText('搜索貼文...'), { target: { value: 'hello' } });
-    fireEvent.click(screen.getByText('搜索'));
-    expect(await screen.findByText('Hello world')).toBeInTheDocument();
+    fireEvent.change(screen.getByPlaceholderText("搜索貼文..."), {
+      target: { value: "hello" },
+    });
+    fireEvent.click(screen.getByText("搜索"));
+    expect(await screen.findByText("Hello world")).toBeInTheDocument();
   });
 });
 ```
@@ -4246,11 +4470,15 @@ describe('Search', () => {
 #### 迭代 5.3：通知系統
 
 ##### Prompt 23：實現通知 API
+
 ###### 背景
+
 實現簡單通知系統，記錄點讚和回覆事件，儲存到新創建的 `notifications` 表，提供 `GET /api/notifications` 返回用戶通知。
 
 ###### 任務
+
 創建以下文件：
+
 - `notifications.sql`：創建 `notifications` 表和觸發器。
 - `NotificationController.java`：處理 `GET /api/notifications`。
 - `NotificationService.java`：實現通知邏輯。
@@ -4259,10 +4487,12 @@ describe('Search', () => {
 - `NotificationIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證通知查詢，模擬分頁。
 - **整合測試**：驗證點讚和回覆觸發通知，檢查 RLS。
 
 ###### 整合方式
+
 - 擴展 Prompt 21 的 Spring Boot 專案，添加新表和服務。
 - 更新 `database-schema.sql`，添加 `notifications` 表。
 
@@ -4325,10 +4555,10 @@ CREATE TRIGGER on_reply_created
 
 ```java
 // src/main/java/com/threadsclone/backend/controller/NotificationController.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.NotificationResponse;
-import com.threadsclone.backend.service.NotificationService;
+import com.threadclone.backend.dto.NotificationResponse;
+import com.threadclone.backend.service.NotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -4356,9 +4586,9 @@ public class NotificationController {
 
 ```java
 // src/main/java/com/threadsclone/backend/service/NotificationService.java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.NotificationResponse;
+import com.threadclone.backend.dto.NotificationResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -4401,7 +4631,7 @@ public class NotificationService {
 
 ```java
 // src/main/java/com/threadsclone/backend/entity/Notification.java
-package com.threadsclone.backend.entity;
+package com.threadclone.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
@@ -4438,10 +4668,10 @@ public class Notification {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/NotificationControllerTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.NotificationResponse;
-import com.threadsclone.backend.service.NotificationService;
+import com.threadclone.backend.dto.NotificationResponse;
+import com.threadclone.backend.service.NotificationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -4479,9 +4709,9 @@ public class NotificationControllerTest {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/NotificationIntegrationTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.NotificationResponse;
+import com.threadclone.backend.dto.NotificationResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -4512,26 +4742,32 @@ public class NotificationIntegrationTest {
 #### 迭代 5.4：前端通知
 
 ##### Prompt 24：實現通知頁面
+
 ###### 背景
+
 實現通知頁面，調用 `GET /api/notifications`，顯示用戶的點讚和回覆通知，支援分頁。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/pages/Notifications.jsx`：通知頁面組件。
 - `src/pages/Notifications.test.jsx`：單元測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證通知渲染，模擬 API 呼叫。
 - **手動測試**：驗證通知樣式和分頁。
 
 ###### 整合方式
+
 - 基於階段 4 的 React 專案，添加新頁面。
 - 調用 `GET /api/notifications`（Prompt 23）。
 
 ```jsx
 // src/pages/Notifications.jsx
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
@@ -4544,13 +4780,13 @@ export default function Notifications() {
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/notifications?page=${page}&size=20`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('加載通知失敗');
+      if (!response.ok) throw new Error("加載通知失敗");
       const newNotifications = await response.json();
       setNotifications((prev) => [...prev, ...newNotifications]);
       setPage(page + 1);
@@ -4571,9 +4807,14 @@ export default function Notifications() {
       <h2 className="text-xl font-bold mb-4">通知</h2>
       <div>
         {notifications.map((notification) => (
-          <div key={notification.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <div
+            key={notification.id}
+            className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+          >
             <p className="text-gray-800 dark:text-gray-200">
-              {notification.type === 'like' ? `${notification.actor_id} 讚了你的貼文` : `${notification.actor_id} 回覆了你的貼文`}
+              {notification.type === "like"
+                ? `${notification.actor_id} 讚了你的貼文`
+                : `${notification.actor_id} 回覆了你的貼文`}
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {new Date(notification.created_at).toLocaleString()}
@@ -4589,11 +4830,11 @@ export default function Notifications() {
 
 ```jsx
 // src/pages/Notifications.test.jsx
-import { render, screen } from '@testing-library/react';
-import Notifications from './Notifications';
-import { supabase } from '../lib/supabase';
+import { render, screen } from "@testing-library/react";
+import Notifications from "./Notifications";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -4601,58 +4842,71 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('Notifications', () => {
+describe("Notifications", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token' } },
+      data: { session: { access_token: "mock_token" } },
       error: null,
     });
     global.fetch = jest.fn();
   });
 
-  test('should render notifications', async () => {
+  test("should render notifications", async () => {
     global.fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve([
-        { id: '1', actor_id: 'user1', type: 'like', created_at: '2025-05-10T12:00:00Z' },
-      ]),
+      json: () =>
+        Promise.resolve([
+          {
+            id: "1",
+            actor_id: "user1",
+            type: "like",
+            created_at: "2025-05-10T12:00:00Z",
+          },
+        ]),
     });
     render(<Notifications />);
-    expect(await screen.findByText('user1 讚了你的貼文')).toBeInTheDocument();
+    expect(await screen.findByText("user1 讚了你的貼文")).toBeInTheDocument();
   });
 });
 ```
 
 ### 階段 6：管理員功能
+
 目標：實現管理員功能，允許管理員查看和刪除所有貼文/回覆。
 
 #### 迭代 6.1：管理員 API
 
 ##### Prompt 25：實現管理員 API
+
 ###### 背景
+
 實現 `GET /api/admin/posts` 和 `DELETE /api/admin/posts/:post_id`，允許管理員（`users.role = 'admin'`）查看和刪除所有貼文（包括匿名和已刪除貼文）。
 
 ###### 任務
+
 創建以下文件：
+
 - `AdminController.java`：處理管理員 API。
 - `AdminService.java`：實現管理員邏輯。
 - `AdminControllerTest.java`：單元測試。
 - `AdminIntegrationTest.java`：整合測試。
 
 ###### 測試要求
+
 - **單元測試**：驗證僅管理員可訪問，模擬 RLS。
 - **整合測試**：驗證返回所有貼文（包括匿名/已刪除），檢查刪除功能。
 
 ###### 整合方式
+
 - 擴展 Prompt 23 的 Spring Boot 專案，添加新控制器和服務。
 - 依賴 `posts` 表的 RLS（`Admins view all posts`, `Admins delete all posts`）。
 
 ```java
 // src/main/java/com/threadsclone/backend/controller/AdminController.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.AdminService;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -4688,9 +4942,9 @@ public class AdminController {
 
 ```java
 // src/main/java/com/threadsclone/backend/service/AdminService.java
-package com.threadsclone.backend.service;
+package com.threadclone.backend.service;
 
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostResponse;
 import io.github.jan.supabase.SupabaseClient;
 import io.github.jan.supabase.postgrest.Postgrest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -4752,10 +5006,10 @@ public class AdminService {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/AdminControllerTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostResponse;
-import com.threadsclone.backend.service.AdminService;
+import com.threadclone.backend.dto.PostResponse;
+import com.threadclone.backend.service.AdminService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -4804,9 +5058,9 @@ public class AdminControllerTest {
 
 ```java
 // src/test/java/com/threadsclone/backend/controller/AdminIntegrationTest.java
-package com.threadsclone.backend.controller;
+package com.threadclone.backend.controller;
 
-import com.threadsclone.backend.dto.PostResponse;
+import com.threadclone.backend.dto.PostResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -4848,7 +5102,7 @@ public class AdminIntegrationTest {
 
 #### 迭代 6.2：前端管理員面板
 
-感謝您的回饋！很高興您喜歡每個程式碼區塊開頭包含路徑的格式，我會繼續保持這種清晰的結構。以下是 **階段 6：管理員功能** 的 **迭代 6.2：前端管理員面板** 的詳細實現，延續前述的 Threads Clone 社交媒體平台藍圖，從 **Prompt 25** 的管理員 API 開始，實現前端管理員面板。我們將遵循您指定的風格：使用 **繁體中文（台灣）**，結構化、詳細且非冗餘，程式碼使用標準 Markdown 格式（```）包裝，不使用 `<xaiArtifact>` 標籤，並在每個程式碼區塊開頭包含檔案路徑。回應將基於 **TDD（測試驅動開發）** 方法，確保與先前步驟（特別是 Prompt 25 的管理員 API）整合，並依賴更新的 `database-schema.sql`（包含 `notifications` 表和相關 RLS 政策）。
+感謝您的回饋！很高興您喜歡每個程式碼區塊開頭包含路徑的格式，我會繼續保持這種清晰的結構。以下是 **階段 6：管理員功能** 的 **迭代 6.2：前端管理員面板** 的詳細實現，延續前述的 Threads Clone 社交媒體平台藍圖，從 **Prompt 25** 的管理員 API 開始，實現前端管理員面板。我們將遵循您指定的風格：使用 **繁體中文（台灣）**，結構化、詳細且非冗餘，程式碼使用標準 Markdown 格式（```）包裝，不使用 `<xaiArtifact>`標籤，並在每個程式碼區塊開頭包含檔案路徑。回應將基於 **TDD（測試驅動開發）** 方法，確保與先前步驟（特別是 Prompt 25 的管理員 API）整合，並依賴更新的`database-schema.sql`（包含 `notifications` 表和相關 RLS 政策）。
 
 ---
 
@@ -4859,15 +5113,20 @@ public class AdminIntegrationTest {
 #### 迭代 6.2：前端管理員面板
 
 ##### Prompt 26：實現管理員面板
+
 ###### 背景
+
 實現管理員面板頁面，僅限管理員（`users.role = 'admin'`）訪問，調用 `GET /api/admin/posts` 顯示所有貼文（可選擇顯示已刪除或匿名貼文），並支援通過 `DELETE /api/admin/posts/:post_id` 刪除貼文。該功能提供管理員對平台內容的全面控制。
 
 ###### 任務
+
 創建以下文件：
+
 - `src/pages/AdminPanel.jsx`：管理員面板頁面組件，包含貼文列表、篩選選項（已刪除/匿名）和刪除按鈕。
 - `src/pages/AdminPanel.test.jsx`：單元測試，驗證頁面渲染和交互。
 
 ###### 測試要求
+
 - **單元測試**：模擬 API 呼叫，驗證：
   - 僅管理員可訪問頁面（非管理員顯示錯誤）。
   - 貼文列表正確渲染（包含已刪除/匿名選項）。
@@ -4879,6 +5138,7 @@ public class AdminIntegrationTest {
   - 刪除操作後列表即時更新。
 
 ###### 整合方式
+
 - 基於階段 5 的 React 專案，添加新頁面。
 - 調用 `GET /api/admin/posts` 和 `DELETE /api/admin/posts/:post_id`（Prompt 25）。
 - 依賴 `users` 表中的 `role` 欄位（檢查 `admin` 角色）及 `posts` 表的 RLS（`Admins view all posts`, `Admins delete all posts`）。
@@ -4886,8 +5146,8 @@ public class AdminIntegrationTest {
 
 ```jsx
 // src/pages/AdminPanel.jsx
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function AdminPanel() {
   const [posts, setPosts] = useState([]);
@@ -4902,15 +5162,15 @@ export default function AdminPanel() {
   const checkAdmin = async () => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/users/${data.session.user.id}`, {
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('無法驗證用戶');
+      if (!response.ok) throw new Error("無法驗證用戶");
       const userData = await response.json();
-      setIsAdmin(userData.role === 'admin');
+      setIsAdmin(userData.role === "admin");
     } catch (err) {
       setError(err.message);
     }
@@ -4921,7 +5181,7 @@ export default function AdminPanel() {
     setLoading(true);
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(
         `/api/admin/posts?page=${page}&size=20&includeDeleted=${includeDeleted}&includeAnonymous=${includeAnonymous}`,
         {
@@ -4930,7 +5190,7 @@ export default function AdminPanel() {
           },
         }
       );
-      if (!response.ok) throw new Error('加載貼文失敗');
+      if (!response.ok) throw new Error("加載貼文失敗");
       const newPosts = await response.json();
       setPosts((prev) => [...prev, ...newPosts]);
       setPage(page + 1);
@@ -4945,14 +5205,14 @@ export default function AdminPanel() {
   const handleDelete = async (postId) => {
     try {
       const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) throw new Error('未登入');
+      if (error || !data.session) throw new Error("未登入");
       const response = await fetch(`/api/admin/posts/${postId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
           Authorization: `Bearer ${data.session.access_token}`,
         },
       });
-      if (!response.ok) throw new Error('刪除失敗');
+      if (!response.ok) throw new Error("刪除失敗");
       setPosts([]);
       setPage(0);
       setHasMore(true);
@@ -5009,15 +5269,22 @@ export default function AdminPanel() {
       </div>
       <div>
         {posts.map((post) => (
-          <div key={post.id} className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <div
+            key={post.id}
+            className="p-4 mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+          >
             <p className="text-gray-800 dark:text-gray-200">{post.content}</p>
             {post.image_url && (
-              <img src={post.image_url} alt="Post" className="mt-2 rounded-md max-w-full" />
+              <img
+                src={post.image_url}
+                alt="Post"
+                className="mt-2 rounded-md max-w-full"
+              />
             )}
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              {post.is_anonymous ? '匿名' : post.user_id} ·{' '}
-              {new Date(post.created_at).toLocaleString()} ·{' '}
-              {post.is_deleted ? '已刪除' : '未刪除'}
+              {post.is_anonymous ? "匿名" : post.user_id} ·{" "}
+              {new Date(post.created_at).toLocaleString()} ·{" "}
+              {post.is_deleted ? "已刪除" : "未刪除"}
             </p>
             <button
               onClick={() => handleDelete(post.id)}
@@ -5037,11 +5304,11 @@ export default function AdminPanel() {
 
 ```jsx
 // src/pages/AdminPanel.test.jsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import AdminPanel from './AdminPanel';
-import { supabase } from '../lib/supabase';
+import { render, screen, fireEvent } from "@testing-library/react";
+import AdminPanel from "./AdminPanel";
+import { supabase } from "../lib/supabase";
 
-jest.mock('../lib/supabase', () => ({
+jest.mock("../lib/supabase", () => ({
   supabase: {
     auth: {
       getSession: jest.fn(),
@@ -5049,63 +5316,63 @@ jest.mock('../lib/supabase', () => ({
   },
 }));
 
-describe('AdminPanel', () => {
+describe("AdminPanel", () => {
   beforeEach(() => {
     supabase.auth.getSession.mockResolvedValue({
-      data: { session: { access_token: 'mock_token', user: { id: 'uuid' } } },
+      data: { session: { access_token: "mock_token", user: { id: "uuid" } } },
       error: null,
     });
     global.fetch = jest.fn();
   });
 
-  test('should restrict access to non-admins', async () => {
+  test("should restrict access to non-admins", async () => {
     global.fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ role: 'user' }),
+      json: () => Promise.resolve({ role: "user" }),
     });
     render(<AdminPanel />);
-    expect(await screen.findByText('僅限管理員訪問')).toBeInTheDocument();
+    expect(await screen.findByText("僅限管理員訪問")).toBeInTheDocument();
   });
 
-  test('should render posts for admin', async () => {
+  test("should render posts for admin", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ role: 'admin' }),
+        json: () => Promise.resolve({ role: "admin" }),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: () =>
           Promise.resolve([
             {
-              id: '1',
-              content: 'Test post',
-              user_id: 'user1',
-              created_at: '2025-05-10T12:00:00Z',
+              id: "1",
+              content: "Test post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
               is_deleted: false,
               is_anonymous: false,
             },
           ]),
       });
     render(<AdminPanel />);
-    expect(await screen.findByText('Test post')).toBeInTheDocument();
+    expect(await screen.findByText("Test post")).toBeInTheDocument();
   });
 
-  test('should delete post', async () => {
+  test("should delete post", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ role: 'admin' }),
+        json: () => Promise.resolve({ role: "admin" }),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: () =>
           Promise.resolve([
             {
-              id: '1',
-              content: 'Test post',
-              user_id: 'user1',
-              created_at: '2025-05-10T12:00:00Z',
+              id: "1",
+              content: "Test post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
               is_deleted: false,
               is_anonymous: false,
             },
@@ -5120,39 +5387,39 @@ describe('AdminPanel', () => {
         json: () => Promise.resolve([]),
       });
     render(<AdminPanel />);
-    fireEvent.click(await screen.findByText('刪除'));
+    fireEvent.click(await screen.findByText("刪除"));
     expect(global.fetch).toHaveBeenCalledWith(
-      '/api/admin/posts/1',
+      "/api/admin/posts/1",
       expect.objectContaining({
-        method: 'DELETE',
+        method: "DELETE",
         headers: expect.any(Object),
       })
     );
   });
 
-  test('should filter deleted posts', async () => {
+  test("should filter deleted posts", async () => {
     global.fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ role: 'admin' }),
+        json: () => Promise.resolve({ role: "admin" }),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: () =>
           Promise.resolve([
             {
-              id: '1',
-              content: 'Deleted post',
-              user_id: 'user1',
-              created_at: '2025-05-10T12:00:00Z',
+              id: "1",
+              content: "Deleted post",
+              user_id: "user1",
+              created_at: "2025-05-10T12:00:00Z",
               is_deleted: true,
               is_anonymous: false,
             },
           ]),
       });
     render(<AdminPanel />);
-    fireEvent.click(await screen.findByLabelText('包含已刪除貼文'));
-    expect(await screen.findByText('Deleted post')).toBeInTheDocument();
+    fireEvent.click(await screen.findByLabelText("包含已刪除貼文"));
+    expect(await screen.findByText("Deleted post")).toBeInTheDocument();
   });
 });
 ```
@@ -5162,6 +5429,7 @@ describe('AdminPanel', () => {
 ## 總結與整合說明
 
 ### 功能概述
+
 - **管理員面板（Prompt 26）**：
   - 提供管理員專屬頁面，僅 `users.role = 'admin'` 的用戶可訪問。
   - 顯示所有貼文列表，支援篩選已刪除或匿名貼文。
@@ -5173,6 +5441,7 @@ describe('AdminPanel', () => {
   - 手動測試確認 UI 交互和樣式。
 
 ### 與先前步驟的整合
+
 - **後端依賴**：
   - 依賴 Prompt 25 的 `AdminController` 和 `AdminService`，確保 `GET /api/admin/posts` 返回所有貼文（包括篩選選項），`DELETE /api/admin/posts/:post_id` 正確更新 `posts.is_deleted`。
   - 使用 `database-schema.sql` 中的 `posts` 表 RLS 政策（`Admins view all posts`, `Admins delete all posts`），確保僅管理員可執行操作。
@@ -5182,6 +5451,7 @@ describe('AdminPanel', () => {
   - 使用 Supabase 客戶端檢查用戶角色（`GET /api/users/:user_id`），與 `Profile.jsx`（Prompt 20）共用邏輯。
 
 ### 下一步建議
+
 - **增強功能**：
   - 添加批量刪除功能，允許管理員一次刪除多篇貼文。
   - 實現管理員對回覆的管理（類似 `GET /api/admin/replies` 和 `DELETE /api/admin/replies/:reply_id`）。
@@ -5194,6 +5464,7 @@ describe('AdminPanel', () => {
   - 定期審計 RLS 政策，確保無漏洞。
 
 ### 部署注意事項
+
 - 確保 Supabase 環境變數（`SUPABASE_URL`, `SUPABASE_KEY`）正確配置。
 - 在部署前運行所有單元測試和整合測試，特別是 `AdminPanel.test.jsx` 和 `AdminIntegrationTest.java`。
 - 驗證 Tailwind CSS 在生產環境中的樣式一致性，檢查暗黑模式切換。
